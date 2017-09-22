@@ -8,6 +8,7 @@
 # include <cmath>
 using namespace std;
 
+
 /**
 * Algorithm description:
 * Calculate wind chill when given air temperature in Fahrenheit(T) and wind speed(V).
