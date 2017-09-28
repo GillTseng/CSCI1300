@@ -12,16 +12,17 @@ float similarityScore (string sequence1, string sequence2)
     if ((int)sequence1.length() == (int)sequence2.length())
     {
         int i =0;
-        int num_match =0;
-        while (i < (int)sequence1.length())
+        float num_match =0;
+        float len = sequence1.length();
+        while (i < len)
         {
             if (sequence1[i] == sequence2[i])
             {
                 num_match++;
             }
-            i=i+1;
+            i++;
         }
-        return num_match / (int)sequence1.length();
+        return num_match / len;
     }
     else
     {
@@ -34,22 +35,12 @@ int countMatches (string genome, string sequence1 , float min_score)
 {
 
     int i = 0;
-    int len = sequence1.length();
+    float len = sequence1.length();
     int count = 0;
+    float simi_score;
     while ((i+len) <= (int)genome.length())
     {
-        int j =0;
-        int sub_count =0;
-        while ( j < len)
-        {
-            if ( genome[j] == sequence1[j] )
-            {
-                sub_count++;
-            }
-            j++;
-        }
-        float simi_score;
-        simi_score = sub_count/len;
+        simi_score = similarityScore( genome.substr(i,len),sequence1);
         if (simi_score > min_score)
         {
             count++;
