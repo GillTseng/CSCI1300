@@ -35,23 +35,22 @@ int main ()
     cin >> n_rows;
 
     int last_len = n_rows*2-1;
-
-
-
     int row = 1;
-    while (row <= n_rows)    // what is the condition needed to print correct # of rows?
+    while (row <= n_rows) // start with the first row
     {
-        // output the asterisks
-        int n_asterisk = 1;
-        while (n_asterisk <= row*2-1)  // what is the condition to print correct # of asterisks ?
-	    {
+        int i = 0;
+        while ( i < n_rows - row) //find and print out spaces before *
+        {
+            cout << "  ";
+            i++;
+        }
+        while ( i < last_len-n_rows+row) // print out *(s) in the row
+        {
             cout << "* ";
-            // what is the modification to n_askerisk ?
-            ++n_asterisk;
-	    }
+            i++;
+        }
+        row++; // move to the next row
         cout << endl;
-        ++row;
     }
-
   return 0;
 }
