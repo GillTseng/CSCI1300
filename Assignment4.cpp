@@ -7,6 +7,14 @@
 # include <iostream>
 using namespace std;
 
+
+/*
+* The function is to calculate similarity score of 2 sequences
+* First, the 2 sequences should be in the same length.
+* Second, compare character by character and sum up how many character matched to each other.
+* Then, similarity score = sum number of matched character / sequence length.
+*/
+
 float similarityScore (string sequence1, string sequence2)
 {
     if ((int)sequence1.length() == (int)sequence2.length())
@@ -31,17 +39,25 @@ float similarityScore (string sequence1, string sequence2)
 }
 
 
+/*
+* The function is to count how many sequences match to genome on a certain or greater similarity score
+* by leverage previous similarityScore(...) function.
+* First, calculate the similarity scores in genome in a giving sequence length.
+* Second, compare the similarity scores with the one that have been given (min_score).
+* If similarity score is greater or equal than minimum score, it will be counted in one match.
+*/
+
 int countMatches (string genome, string sequence1 , float min_score)
 {
 
-    int i = 0;
     float len = sequence1.length();
-    int count = 0;
     float simi_score;
+    int count = 0;
+    int i = 0;
     while ((i+len) <= (int)genome.length())
     {
         simi_score = similarityScore( genome.substr(i,len),sequence1);
-        if (simi_score > min_score)
+        if (simi_score >= min_score)
         {
             count++;
         }
@@ -51,13 +67,21 @@ int countMatches (string genome, string sequence1 , float min_score)
 }
 
 
+
+/*
+* The function is to find the best similarity score in a given genome.
+* First, using the previous function similarityScore(...) to calculate similarity score in a giving sequence length.
+* If the latest similarity score is greater than previous one, then keep the latest score.
+* In the end, the function return the highest similarity score.
+*/
+
 float findBestMatch (string genome, string seq)
 {
     float highest_score =0;
     float score;
     int i = 0;
     int len = seq.length();
-    while ( (i+len) < (int)genome.length())
+    while ( (i+len) <= (int)genome.length())
     {
         score = similarityScore(genome.substr(i,len),seq);
         if ( score > highest_score)
@@ -68,6 +92,12 @@ float findBestMatch (string genome, string seq)
     }
     return highest_score;
 }
+
+/*
+* The function is to find which genome has better match to the sequence.
+* Leverage previous function findBestMatch(...) to calculate highest similarity score in each genome.
+* Then compare those 3 scores and return the highest one in integer format.
+*/
 
 int findBestGenome (string genome1, string genome2, string genome3, string seq)
 {
