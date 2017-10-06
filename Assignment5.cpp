@@ -54,21 +54,59 @@ float calculateDifference ( int a[], int b[], int size)
 
 // Part 4
 
-void sortArray (float unsortedArray[], int size)
+void sortArray (float unsortedArray[], int size) // using selection sorting
 {
     for (int i =0 ; i < size; i++)
     {
-        int min_value_index = i;
-        for (int j = i+1; j <= size-i ; j++) //find the smallest value in the array
+        int min_value_index = i; // assume the index number is the smallest number
+        for (int j = i+1; j < size ; j++) //compare all numbers after the index value
         {
-            if (unsortedArray[j] < unsortedArray[min_value_index])
+            if (unsortedArray[j] < unsortedArray[min_value_index]) //replace previous index with index of smallest number
             {
                 min_value_index = j;
             }
+
         }
-        cout << unsortedArray[min_value_index] << endl;
-        //float temp = unsortedArray[i];
-        //unsortedArray[i] == unsortedArray[min_value_index];
-        //unsortedArray[min_value_index] == temp;
+        float temp = unsortedArray[i]; //swap positions of 2 numbers
+        unsortedArray[i] = unsortedArray[min_value_index];
+        unsortedArray[min_value_index] = temp;
     }
+}
+
+// Part 5
+
+void copyArray (float source[], int size, float dest[])
+{
+    for (int i = 0; i < size; i++)
+    {
+        dest[i] = source[i];
+        cout << dest[i] << endl;
+    }
+}
+
+// Part 6
+
+void convert (int rating[], string text[], int size)
+{
+    int number[6] ={0,-5,-3,1,3,5};
+    string str[6] = {"Haven’t read it","Hated it","Didn't like it","Ok. neither hot nor cold about it","Liked it!","Really liked it!"};
+
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            if (rating[i] == number[j])
+            {
+                text[i]= str[j];
+            }
+
+        }
+    }
+}
+
+// Part 7
+
+float findMedian (float array[], int size)
+{
+
 }
