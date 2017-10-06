@@ -105,8 +105,21 @@ void convert (int rating[], string text[], int size)
 }
 
 // Part 7
+// know how many number you should count till the median (median_order)
+// find the smallest number then count++, find second smallest number then count++ when count == median_order you find the median
+
 
 float findMedian (float array[], int size)
 {
+    if ( size % 2 ==1) //determine if the size is even or odd
+    {
+        int median_order = size / 2 + size % 2;
+        for (int i = 0; i <= median_order; i++)
 
+
+    }
+    else if (size % 2 == 0)
+    {
+        // median should be pos ((size / 2)+(size / 2)-1)/2
+    }
 }
