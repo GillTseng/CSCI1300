@@ -4,7 +4,7 @@
 // Assignment 5
 
 # include <iostream>
-# incldue <cmath>
+# include <cmath>
 using namespace std;
 
 
@@ -47,6 +47,28 @@ float calculateDifference ( int a[], int b[], int size)
     float sum = 0;
     for (int i = 0; i < size; i++)
     {
+        sum = sum + pow(a[i]-b[i],2);
+    }
+    return sum;
+}
 
+// Part 4
+
+void sortArray (float unsortedArray[], int size)
+{
+    for (int i =0 ; i < size; i++)
+    {
+        int min_value_index = i;
+        for (int j = i+1; j <= size-i ; j++) //find the smallest value in the array
+        {
+            if (unsortedArray[j] < unsortedArray[min_value_index])
+            {
+                min_value_index = j;
+            }
+        }
+        cout << unsortedArray[min_value_index] << endl;
+        //float temp = unsortedArray[i];
+        //unsortedArray[i] == unsortedArray[min_value_index];
+        //unsortedArray[min_value_index] == temp;
     }
 }
