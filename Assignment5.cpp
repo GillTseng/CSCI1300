@@ -80,7 +80,6 @@ void copyArray (float source[], int size, float dest[])
     for (int i = 0; i < size; i++)
     {
         dest[i] = source[i];
-        cout << dest[i] << endl;
     }
 }
 
@@ -111,15 +110,19 @@ void convert (int rating[], string text[], int size)
 
 float findMedian (float array[], int size)
 {
+    float new_array[size];
+    copyArray(array,size,new_array);
+    int median_pos = size / 2;
+    sortArray(new_array,size);
+
     if ( size % 2 ==1) //determine if the size is even or odd
     {
-        int median_order = size / 2 + size % 2;
-        for (int i = 0; i <= median_order; i++)
-
-
+        return new_array[median_pos];
     }
-    else if (size % 2 == 0)
+
+    else
     {
-        // median should be pos ((size / 2)+(size / 2)-1)/2
+         cout << (new_array[median_pos]+new_array[median_pos-1])/2;
+         return (new_array[median_pos]+new_array[median_pos-1])/2;
     }
 }
