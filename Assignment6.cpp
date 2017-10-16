@@ -85,12 +85,48 @@ int fillArray (string filename, float array[][5]){
 
 float arrayStats (string filename, float numbers[][5]){
 
+    int num_row = fillArray(filename, numbers);
+
+    float arr_mean[num_row];
+    int i = 0;
+    float temp_sum = 0;
+
+    for ( int col = 1; col < 5; col=col+2){
+        for ( int row = 0; row < num_row; row++){
+            temp_sum = temp_sum + numbers[row][col];
+        }
+        arr_mean[i] = temp_sum / num_row;
+        temp_sum = 0;
+        i++;
+    }
+
+    for ( int row = 1; row < num_row; row=row+2){
+        for ( int col = 0; col < 5; col++){
+            temp_sum = temp_sum + numbers[row][col];
+        }
+        arr_mean[i] = temp_sum / 5;
+        temp_sum = 0;
+        i++;
+    }
+
+    float sum = 0;
+    for (int j = 0; j < i; j++){
+        sum = sum + arr_mean[j];
+    }
+
+    return sum;
 }
 
 
+
+// Part 4.
+void add BookRatings (string filename, string users[], int ratings[][5]){
+
+}
+
 int main()
 {
-    float arr [3][5];
-    fillArray("test.txt", arr);
+    float arr [5][5];
+    arrayStats("test.txt", arr);
     return 0;
 }
