@@ -113,20 +113,85 @@ float arrayStats (string filename, float numbers[][5]){
     for (int j = 0; j < i; j++){
         sum = sum + arr_mean[j];
     }
-
     return sum;
 }
 
 
 
 // Part 4.
-void add BookRatings (string filename, string users[], int ratings[][5]){
+void addBookRatings (string filename, string users[], int ratings[][50]){
 
+    int max_row = 100;
+    for (int row = 0; row < max_row; row++){
+        for (int col=0; col < 50; col++){
+           ratings[row][col] = 0;
+        }
+    }
+
+    ifstream inStream (filename, ios::in);
+    if (inStream.fail())
+    {
+        return;
+    }
+
+    string line;
+    getline(inStream,line);
+
+    int count = 0;
+    while (!inStream.eof()){
+        getline(inStream,line);
+        count ++;
+
+        string temp_arr[3];         // create a string array to store 3 parsing strings
+        string temp="";
+        int j=0;
+        for (int i = 0; i < line.length(); i++){
+            if (line[i] !=','){
+                temp = temp + line[i];
+            }
+            if (line[i] ==',' | i == line.length()-1){
+                temp_arr[j] = temp;
+                j++;
+                temp="";
+            }
+        }
+
+        int dummy_num = -1;
+        for (int k = 0; k < count; k++){            // check if the user name already exist in the array
+            if (temp_arr[0] == users[k]){
+
+                dummy_num = k;
+                int book_index = stoi(temp_arr[1]);
+                int score = stoi(temp_arr[2]);
+                if (ratings[k][book_index] == 0){
+                    ratings[k][book_index] = score;
+                    cout << users[k] << setw(2) << ratings[k][book_index] << endl;
+                }
+            }
+        }
+
+        if ( dummy_num == -1){
+            for (int k = 0; k < count; k++){
+                if (users[k].length() == 0){
+                    users[k] = temp_arr[0];
+
+                    int book_index = stoi(temp_arr[1]);
+                    int score = stoi(temp_arr[2]);
+                    ratings[k][book_index] = score;
+                    cout << users[k] << setw(2) << ratings[k][book_index] << endl;
+                }
+            }
+        }
+
+
+    }
 }
 
 int main()
 {
-    float arr [5][5];
-    arrayStats("test.txt", arr);
+    string arr_users[100];
+    int ratings[100][50];
+
+    addBookRatings("part4.txt", arr_users, ratings);
     return 0;
 }
