@@ -151,23 +151,28 @@ void addBookRatings (string filename, string users[], int ratings[][50]){
             }
             if (line[i] ==',' | i == line.length()-1){
                 temp_arr[j] = temp;
+                //cout << temp_arr[j] << endl;
                 j++;
                 temp="";
             }
         }
 
+
         int dummy_num = -1;
         for (int k = 0; k < count; k++){            // check if the user name already exist in the array
-            if (temp_arr[0] == users[k]){
+            if (users[k] == temp_arr[0]){
 
-                dummy_num = k;
                 int book_index = stoi(temp_arr[1]);
                 int score = stoi(temp_arr[2]);
                 if (ratings[k][book_index] == 0){
                     ratings[k][book_index] = score;
-                    cout << users[k] << setw(2) << ratings[k][book_index] << endl;
                 }
+                dummy_num = k;
             }
+//            cout << k << ": " << users[k] << endl;
+//            cout << temp_arr[0] << endl;
+//            cout << dummy_num << endl;
+//            cout <<"----------------"<< endl;
         }
 
         if ( dummy_num == -1){
@@ -178,20 +183,14 @@ void addBookRatings (string filename, string users[], int ratings[][50]){
                     int book_index = stoi(temp_arr[1]);
                     int score = stoi(temp_arr[2]);
                     ratings[k][book_index] = score;
-                    cout << users[k] << setw(2) << ratings[k][book_index] << endl;
+                    break;
                 }
             }
         }
 
 
     }
-}
-
-int main()
-{
-    string arr_users[100];
-    int ratings[100][50];
-
-    addBookRatings("part4.txt", arr_users, ratings);
-    return 0;
+//    for (int i = 0; i < count; i++){
+//        cout<< users[i] << endl;
+//    }
 }
