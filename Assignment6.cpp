@@ -140,57 +140,53 @@ void addBookRatings (string filename, string users[], int ratings[][50]){
     int count = 0;
     while (!inStream.eof()){
         getline(inStream,line);
-        count ++;
 
-        string temp_arr[3];         // create a string array to store 3 parsing strings
-        string temp="";
-        int j=0;
-        for (int i = 0; i < line.length(); i++){
-            if (line[i] !=','){
-                temp = temp + line[i];
-            }
-            if (line[i] ==',' | i == line.length()-1){
-                temp_arr[j] = temp;
-                //cout << temp_arr[j] << endl;
-                j++;
-                temp="";
-            }
-        }
+        if ( line.length() > 0){
+            count ++;
 
-
-        int dummy_num = -1;
-        for (int k = 0; k < count; k++){            // check if the user name already exist in the array
-            if (users[k] == temp_arr[0]){
-
-                int book_index = stoi(temp_arr[1]);
-                int score = stoi(temp_arr[2]);
-                if (ratings[k][book_index] == 0){
-                    ratings[k][book_index] = score;
+            string temp_arr[3];         // create a string array to store 3 parsing strings
+            string temp="";
+            int j=0;
+            for (int i = 0; i < line.length(); i++){
+                if (line[i] !=','){
+                    temp = temp + line[i];
                 }
-                dummy_num = k;
-            }
-//            cout << k << ": " << users[k] << endl;
-//            cout << temp_arr[0] << endl;
-//            cout << dummy_num << endl;
-//            cout <<"----------------"<< endl;
-        }
-
-        if ( dummy_num == -1){
-            for (int k = 0; k < count; k++){
-                if (users[k].length() == 0){
-                    users[k] = temp_arr[0];
-
-                    int book_index = stoi(temp_arr[1]);
-                    int score = stoi(temp_arr[2]);
-                    ratings[k][book_index] = score;
-                    break;
+                if (line[i] ==',' | i == line.length()-1){
+                    temp_arr[j] = temp;
+                    //cout << temp_arr[j] << endl;
+                    j++;
+                    temp="";
                 }
             }
+
+            int book_index = stoi(temp_arr[1]);
+            int score = stoi(temp_arr[2]);
+            int dummy_num = -1;
+            for (int k = 0; k < count; k++){            // check if the user name already exist in the array
+                if (users[k] == temp_arr[0]){
+
+                    if (ratings[k][book_index] == 0){
+                        ratings[k][book_index] = score;
+                    }
+                    dummy_num = k;
+                }
+            }
+
+            if ( dummy_num == -1){
+                for (int k = 0; k < count; k++){
+                    if (users[k].length() == 0){
+                        users[k] = temp_arr[0];
+
+                        int book_index = stoi(temp_arr[1]);
+                        int score = stoi(temp_arr[2]);
+                        ratings[k][book_index] = score;
+                        break;
+                    }
+                }
+            }
+
         }
-
-
     }
-//    for (int i = 0; i < count; i++){
-//        cout<< users[i] << endl;
-//    }
+    inStream.close();
+    return;
 }
