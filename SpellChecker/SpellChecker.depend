@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1509384598 source:/home/user/Downloads/CSCI1300/SpellChecker/main.cpp
+	<iostream>
+	<string>
+	"SpellChecker.h"
+
+1509384185 /home/user/Downloads/CSCI1300/SpellChecker/SpellChecker.h
+	<iostream>
+	<string>
+
+1509384306 source:/home/user/Downloads/CSCI1300/SpellChecker/SpellChecker.cpp
+	<iostream>
+	<string>
+	<fstream>
+	"SpellChecker.h"
+
