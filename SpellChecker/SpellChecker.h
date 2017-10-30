@@ -21,26 +21,25 @@ class SpellChecker{
         bool readCorrectedWords(string);
         bool setStartMarker(char);
         bool setEndMarker(char);
-        void getStartMarker();
-        void getEndMarker();
+        char getStartMarker();
+        char getEndMarker();
         string repair(string);
         void repairFile(string, string);
 
 
     private:
         //data
-//        string valid_spell_file;
-//        string miss_spell_file;
         char start_marker;
         char end_marker;
         string valid_words[10000];
-        string correct_words[10000];
         string incorrect_words[10000];
-        string line;
-        int count =0;
-//        string input_file;
-//        string output_file;
+        string correct_words[10000];
+        string pun = "!@#$%^&*()_-+={}[]:;''?/<>,.";
+        string parsing_arr[100];
 
+        //method
+        string removePunLow(string);
+        void parsingSent(string);
 };
 
 #endif // SPELLCHECKER_H_INCLUDED
