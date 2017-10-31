@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1509426017 source:/home/user/Downloads/CSCI1300/WordCounts/main.cpp
+	"WordCounts.h"
+	<iostream>
+	<string>
+
+1509423888 /home/user/Downloads/CSCI1300/WordCounts/WordCounts.h
+	<iostream>
+	<string>
+
+1509426028 source:/home/user/Downloads/CSCI1300/WordCounts/WordCounts.cpp
+	"WordCounts.h"
+	<iostream>
+	<string>
+

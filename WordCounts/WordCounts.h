@@ -21,11 +21,11 @@ class WordCounts{
     private:
         //data
         string words[10000];
-        int count[10000];
+        int word_count[10000];
+        string pun = "!@#$%^&*()_-+={}[]:;''?/<>,.";
 
         //method
         string removePunLow(string);
-
 };
 
 
