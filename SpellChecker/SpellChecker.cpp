@@ -54,12 +54,10 @@ bool SpellChecker::readCorrectedWords(string correctfile){
                 pos = line.find('\t');
                 incorrect_words[count] = line.substr(0,pos);
                 correct_words[count] = line.substr(pos+1,line.length()-(pos+1));
-//                cout<< incorrect_words[count] << '\t' << correct_words[count] << endl;
                 count++;
         }
     }
     inStream.close();
-//    cout << count;
     return pos != 0;
 }
 
@@ -143,7 +141,6 @@ string SpellChecker::repair(string sentence){
             count++;
         }
     }
-
     return new_line;
 }
 

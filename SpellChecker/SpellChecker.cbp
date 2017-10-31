@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="SpellChecker.cpp" />
+		<Unit filename="SpellChecker.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<envvars />
