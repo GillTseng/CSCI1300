@@ -54,10 +54,12 @@ bool SpellChecker::readCorrectedWords(string correctfile){
                 pos = line.find('\t');
                 incorrect_words[count] = line.substr(0,pos);
                 correct_words[count] = line.substr(pos+1,line.length()-(pos+1));
+//                cout<< incorrect_words[count] << '\t' << correct_words[count] << endl;
                 count++;
         }
     }
     inStream.close();
+//    cout << count;
     return pos != 0;
 }
 
@@ -80,35 +82,39 @@ char SpellChecker::getEndMarker(){
 }
 
 string SpellChecker::removePunLow(string sent){
-    string line;
-    for (int i = 0; i < sent.length(); i++){
-        bool is_pun = false;
-        for (int j = 0; j < pun.length(); j++){
-            if(sent[i] == pun[j]){
-                is_pun = true;
-                break;
-            }
-        }
-        if (is_pun == false && (sent[i] < 'A' || sent[i] > 'Z')){
-            line = line + sent[i];
-
-        } if (is_pun == false && sent[i] >= 'A' && sent[i] <='Z'){
-            line = line + (char)tolower(sent[i]);
+    //if first and last positions are punctuations, remove them
+    for (int i = 0; i < pun.length(); i++){
+        if(sent[0] == pun[i]){
+            sent = sent.substr(1,sent.length()-1);
+            break;
         }
     }
-    return line;
+    for (int j = 0; j < pun.length(); j++){
+        if(sent[sent.length()-1] == pun[j]){
+            sent = sent.substr(0,sent.length()-1);
+            break;
+        }
+    }
+
+    for (int k = 0; k < sent.length(); k++){
+        if (sent[k] >= 'A' && sent[k] <='Z'){
+            sent[k] = (char)tolower(sent[k]);
+        }
+    }
+    return sent;
 }
 
 string SpellChecker::repair(string sentence){
-    string line = removePunLow(sentence);
     string new_line;
     string substring;
-    for (int i = 0; i < line.length(); i++){
-        if(line[i] != ' '){
-            substring = substring + line[i];
+    int count = 0;
+    for (int i = 0; i < sentence.length(); i++){
+        if(sentence[i] != ' '){
+            substring = substring + sentence[i];
         }
-        if (line[i] ==' ' || i == line.length()-1){
+        if (sentence[i] ==' ' || i == sentence.length()-1){
             bool is_valid = false;
+            substring = removePunLow(substring);
             for(int j = 0; j < 10000; j++){                     //compare valid words, if valid don't do anything
                 if (substring == valid_words[j]){
                     is_valid = true;
@@ -128,14 +134,16 @@ string SpellChecker::repair(string sentence){
                     substring = start_marker + substring + end_marker;
                 }
             }
-            if(i != line.length()-1){
-                new_line = new_line + substring + " ";
+            if(count == 0){
+                new_line = substring;
             } else {
-                new_line = new_line + substring;
+                new_line = new_line + " " +substring;
             }
             substring = "";
+            count++;
         }
     }
+
     return new_line;
 }
 
