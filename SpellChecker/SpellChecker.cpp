@@ -47,14 +47,18 @@ bool SpellChecker::readCorrectedWords(string correctfile){
     }
 
     string line;
-    int count = 0;
     int pos = 0;
     while(getline(inStream,line)){
         if(line.length()>0){
                 pos = line.find('\t');
-                incorrect_words[count] = line.substr(0,pos);
-                correct_words[count] = line.substr(pos+1,line.length()-(pos+1));
-                count++;
+                for (int i = 0; i < 10000; i++){
+                    if(incorrect_words[i].length() == 0){
+                        incorrect_words[i] = line.substr(0,pos);
+                        correct_words[i] = line.substr(pos+1,line.length()-(pos+1));
+                        break;
+                    }
+                }
+
         }
     }
     inStream.close();
