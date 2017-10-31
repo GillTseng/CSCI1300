@@ -35,11 +35,9 @@ class SpellChecker{
         string incorrect_words[10000];
         string correct_words[10000];
         string pun = "!@#$%^&*()_-+={}[]:;''?/<>,.";
-        string parsing_arr[100];
 
         //method
         string removePunLow(string);
-        void parsingSent(string);
 };
 
 #endif // SPELLCHECKER_H_INCLUDED

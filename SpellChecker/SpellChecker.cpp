@@ -99,63 +99,42 @@ string SpellChecker::removePunLow(string sent){
     return line;
 }
 
-void SpellChecker::parsingSent(string sent){
-    int pos = 0;
-    int count = 0;
-    for (int i = 0; i < sent.length(); i++){
-        if(sent[i] ==' '){
-                parsing_arr[count] = sent.substr(pos,i-pos);
-                pos = i+1;
-                count++;
-        } else if (i == sent.length()-1){
-            parsing_arr[count] = sent.substr(pos,sent.length()-pos);
-        }
-    }
-    return;
-}
-
 string SpellChecker::repair(string sentence){
     string line = removePunLow(sentence);
-    parsingSent(line);
-
-    // compare with valid words and incorrect words
-    for(int i = 0; i < 100; i++){
-        if(parsing_arr[i].length()>0){
-                bool is_valid = false;
-                for(int j = 0; j < 10000; j++){                     //compare valid words, if valid don't do anything
-                    if (parsing_arr[i] == valid_words[j]){
-                        cout << parsing_arr[i] << endl;
-                        is_valid = true;
+    string new_line;
+    string substring;
+    for (int i = 0; i < line.length(); i++){
+        if(line[i] != ' '){
+            substring = substring + line[i];
+        }
+        if (line[i] ==' ' || i == line.length()-1){
+            bool is_valid = false;
+            for(int j = 0; j < 10000; j++){                     //compare valid words, if valid don't do anything
+                if (substring == valid_words[j]){
+                    is_valid = true;
+                    break;
+                }
+            }
+            if(is_valid == false){                               // if is_valid = false, compare the word with incorrect words
+                bool is_incorrect = false;
+                for(int k = 0; k < 10000; k++){
+                    if (substring == incorrect_words[k]){
+                        substring = correct_words[k];
+                        is_incorrect = true;
                         break;
                     }
                 }
-                if(is_valid == false){                               // if is_valid = false, compare the word with incorrect words
-                    bool is_incorrect = false;
-                    for(int k = 0; k < 10000; k++){
-                        if (parsing_arr[i] == incorrect_words[k]){
-                            parsing_arr[i] = correct_words[k];
-                            cout << correct_words[k] << endl;
-                            is_incorrect = true;
-                            break;
-                        }
-                    }
-                    if(is_incorrect == false){
-                        parsing_arr[i] = start_marker + parsing_arr[i] + end_marker;
-                        cout << parsing_arr[i] << endl;
-                    }
+                if(is_incorrect == false){
+                    substring = start_marker + substring + end_marker;
                 }
-        } else {
-            break;
-        }
-    }
-
-    string new_line;
-    for(int i = 0; i < 100 && parsing_arr[i].length()>0; i++){
-            if(0 == i){
-                new_line = parsing_arr[i];
-            } else {
-                new_line = new_line + " " + parsing_arr[i];
             }
+            if(i != line.length()-1){
+                new_line = new_line + substring + " ";
+            } else {
+                new_line = new_line + substring;
+            }
+            substring = "";
+        }
     }
     return new_line;
 }
