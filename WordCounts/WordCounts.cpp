@@ -34,15 +34,13 @@ string WordCounts::removePunLow(string sent){
 void WordCounts::tallyWords(string sentence){
     string new_sentence = removePunLow(sentence);    //remove punctuation and make case lower
     string substring;
-    int count = 0;
     for(int i = 0; i < new_sentence.length(); i++){
         if(new_sentence[i] != ' '){
             substring = substring + new_sentence[i];
         }
         if (new_sentence[i] ==' ' || i == new_sentence.length()-1){
-                count++;
                 int dummy = -1;
-                for (int j = 0; j < count; j++){
+                for (int j = 0; j < 10000 && words[j].length()>0; j++){
                     if (substring == words[j]){
                         word_count[j] = word_count[j] + 1;
                         dummy = j;
@@ -50,7 +48,7 @@ void WordCounts::tallyWords(string sentence){
                     }
                 }
                 if (dummy = -1){
-                        for (int k = 0; k < count; k++){
+                        for (int k = 0; k < 10000; k++){
                             if(words[k].length() == 0){
                                 words[k] = substring;
                                 word_count[k] = 1;
