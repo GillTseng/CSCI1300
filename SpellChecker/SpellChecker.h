@@ -1,3 +1,9 @@
+// Author: Enchieh Tseng
+// Recitation: 110 – Monika Tak
+//
+// Assignment 7
+// Part 1
+
 #ifndef SPELLCHECKER_H_INCLUDED
 #define SPELLCHECKER_H_INCLUDED
 
@@ -36,7 +42,7 @@ class SpellChecker{
         string correct_words[10000];
         string pun = "!@#$%^&*()_-+={}[]:;''?/<>,.";
 
-        //method
+        //method (helper function)
         string removePunLow(string);
 };
 
