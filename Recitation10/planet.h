@@ -8,12 +8,12 @@ using namespace std;
 class planet{
     public:
         planet();
-        planet(string, float, float);
+        planet(string, float);
         ~planet();
         void setName(string);
         string getName();
         void setRadius(float);
-        float getDiameter();
+        float getRadius();
 //        void setDist(float);
 //        float getDist();
 //        float getOrbitPeriod();

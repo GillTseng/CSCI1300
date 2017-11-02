@@ -4,9 +4,6 @@
 #include <math.h>
 using namespace std;
 
-solarSystem::solarSystem(){
-}
-
 solarSystem::solarSystem(string name){
     systemName = name;
     numPlanets = 0;
@@ -15,45 +12,36 @@ solarSystem::solarSystem(string name){
 solarSystem::~solarSystem(){
 }
 
-//string solarSystem::findLargest(){  // return the name of the largest planet
-//    int max_index = 0;
-//    for (int i = 0; i < numPlanets; i++){
-//        if ( planetDiameters[i] > planetDiameters[max_index]){
-//            max_index = i;
-//        }
-//    }
-//    return planetNames[max_index];
-//}
-
 string solarSystem::getName(){      // return the name of the solar system
     return systemName;
-}
-
-//float solarSystem::getDiameter(){   // return the diameter of the largest orbit
-//    int max_index = 0;
-//    for (int i = 0 ; i < numPlanets; i++){
-//        if ( planetOrbitDist[i] > planetOrbitDist[max_index]){
-//            max_index = i;
-//        }
-//    }
-//    return planetOrbitDist[max_index]*2;
 }
 
 int solarSystem::getNumPlanets(){         // return the number of planets in the system
     return numPlanets;
 }
 
-bool solarSystem::addPlanet(string name, float ){           //Adds a single planet to solar system
+bool solarSystem::addPlanet(string name, float radius){           //Adds a single planet to solar system
     if(numPlanets < maxNumPlanets){
-        planetNames[numPlanets] = name;
-		planetDiameters[numPlanets] = 2*planetRadius;
-		planetOrbitDist[numPlanets] = planetDist;
-		numPlanets++;
-		return numPlanets != 0;
+            bool unique = true;
+            for (int i = 0; i < numPlanets; i++){
+                if (systemPlanets[i].getName() == name){
+                    unique = false;
+                    return unique;
+                }
+            }
+            if (unique = true){
+                systemPlanets[numPlanets] = planet(name, radius);
+                numPlanets++;
+            }
+    } else {
+        return false;
     }
-    return numPlanets==0;
+    return true;
 }
 
 planet solarSystem::getPlanet(int index){           // return an object of planet at provided index
-    systemPlanets[index];
+    return systemPlanets[index];
+}
+
+float solarSystem::radiusDifference(string, string){
 }

@@ -2,9 +2,6 @@
 #include <math.h>
 #include "planet.h"
 #include "solarSystem.h"
-#include "Planet.cpp"
-#include "solarSystem.cpp"
-
 using namespace std;
 
 
@@ -42,23 +39,24 @@ int main(){
         * make sure to check if name already exists. If it does, ask the user to enter another name.
      */
 
-    int i,j;
-    bool unique;
-    string name;
-    string radius;
+    string input_name;
+    float input_radius;
 
-
-    // Logic for 1 goes here
-
-
+    solarSystem sol("Sol");
+    cout << "Please create a solar system with 5 planets." << endl;
+    for (int count =1; count <= 5; count++){
+            cout << "Please input planet " << count << "'s name and radius." << endl;
+            cin >> input_name >> input_radius;
+            sol.addPlanet(input_name,input_radius);
+    }
 
     // Use the following snipped of code to test that you filled your system correctly
     // !!NOTE: here "<obj_of_type_solarSystem>" is a placeholder you should use the name
     //  of your solarSystem instance created (hopefully) above.
 
-    /*
-    i = 0;
-    int num_of_planets = <obj_of_type_solarSystem>.getNumPlanets();
+
+    int i = 0;
+    int num_of_planets = sol.getNumPlanets();
 
     if (num_of_planets < 5) {
 
@@ -66,11 +64,11 @@ int main(){
     }
 
     while(i<num_of_planets) {
-        cout<<"This is planet " << i<< " with name: "<< <obj_of_type_solarSystem>.getPlanet(i).getName()<<
-        " and radius: "<< <obj_of_type_solarSystem>.getRadius()<<endl;
+        cout<<"This is planet " << i<< " with name: "<< sol.getPlanet(i).getName()<<
+        " and radius: "<< sol.getPlanet(i).getRadius()<<endl;
         i++;
     }
-    */
+
 
     /* 2) Add the method radiusDifference(...) to the SolarSytem class. This method
      takes two objects of type Planet and returns the difference of their

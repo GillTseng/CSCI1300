@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1509648472 source:/home/user/Downloads/CSCI1300/Recitation10/planet.cpp
+	"planet.h"
+	<iostream>
+	<string>
+
+1509648475 /home/user/Downloads/CSCI1300/Recitation10/planet.h
+	<iostream>
+	<string>
+
+1509651892 source:/home/user/Downloads/CSCI1300/Recitation10/solarSystem.cpp
+	"solarSystem.h"
+	<iostream>
+	<string>
+	<math.h>
+
+1509652389 /home/user/Downloads/CSCI1300/Recitation10/solarSystem.h
+	<string>
+	<iostream>
+	"planet.h"
+
+1509651803 source:/home/user/Downloads/CSCI1300/Recitation10/SolarSystem_main.cpp
+	<iostream>
+	<math.h>
+	"planet.h"
+	"solarSystem.h"
+

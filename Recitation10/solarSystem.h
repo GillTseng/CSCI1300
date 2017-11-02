@@ -15,12 +15,13 @@ class solarSystem{
 		int getNumPlanets();		// return the number of planets in the system
 		bool addPlanet(string, float);	//Adds a single planet to solar system
         planet getPlanet(int);  	// return an object of planet at provided index
+        float radiusDifference(string,string);
 
 	private:
 		int maxNumPlanets = 10;
 		string systemName;
 		int numPlanets;
 		planet systemPlanets[10]; // array of object planet, each obj is a planet
-		
+
 };
 #endif // SOLAR_SYSTEM_H
