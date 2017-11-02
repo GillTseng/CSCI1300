@@ -8,20 +8,19 @@
 	<iostream>
 	<string>
 
-1509651892 source:/home/user/Downloads/CSCI1300/Recitation10/solarSystem.cpp
+1509654466 source:/home/user/Downloads/CSCI1300/Recitation10/solarSystem.cpp
 	"solarSystem.h"
 	<iostream>
 	<string>
 	<math.h>
 
-1509652389 /home/user/Downloads/CSCI1300/Recitation10/solarSystem.h
+1509654129 /home/user/Downloads/CSCI1300/Recitation10/solarSystem.h
 	<string>
 	<iostream>
 	"planet.h"
 
-1509651803 source:/home/user/Downloads/CSCI1300/Recitation10/SolarSystem_main.cpp
+1509655019 source:/home/user/Downloads/CSCI1300/Recitation10/SolarSystem_main.cpp
 	<iostream>
-	<math.h>
 	"planet.h"
 	"solarSystem.h"
 

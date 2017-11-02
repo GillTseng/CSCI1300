@@ -1,5 +1,4 @@
 #include <iostream>
-#include <math.h>
 #include "planet.h"
 #include "solarSystem.h"
 using namespace std;
@@ -20,10 +19,14 @@ using namespace std;
         * for 5 planets you should have 10 outputs.
 
 */
-void compareRadii(solarSystem mySolarSystem, int num_of_planets) {
-
-        // Logic for 2 goes here
-
+void compareRadii(solarSystem solar_name, int number) {
+    for(int i = 0; i < number; i++){
+        for(int j = i+1; j < number; j++){
+            cout << "Radius difference between planet " << solar_name.getPlanet(i).getName() << " and planet " << solar_name.getPlanet(j).getName() <<
+                 " is => " << solar_name.radiusDifference(solar_name.getPlanet(i), solar_name.getPlanet(j)) << endl;
+        }
+    }
+    return;
 }
 
 
@@ -84,7 +87,7 @@ int main(){
     // you should use the name of your solarSystem instance created (hopefully) above
     // and the number of planets currently in the solarSystem
 
-    //compareRadii(<obj_of_type_solarSystem>, <num_of_planets>)
+    compareRadii(sol, sol.getNumPlanets());
 
     return 0;
 }

@@ -15,7 +15,7 @@ class solarSystem{
 		int getNumPlanets();		// return the number of planets in the system
 		bool addPlanet(string, float);	//Adds a single planet to solar system
         planet getPlanet(int);  	// return an object of planet at provided index
-        float radiusDifference(string,string);
+        float radiusDifference(planet,planet);
 
 	private:
 		int maxNumPlanets = 10;

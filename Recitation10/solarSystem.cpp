@@ -43,5 +43,6 @@ planet solarSystem::getPlanet(int index){           // return an object of plane
     return systemPlanets[index];
 }
 
-float solarSystem::radiusDifference(string, string){
+float solarSystem::radiusDifference(planet p1, planet p2){
+    return fabs(p1.getRadius() - p2.getRadius());
 }
