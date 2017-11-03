@@ -22,6 +22,5 @@ class solarSystem{
 		string systemName;
 		int numPlanets;
 		planet systemPlanets[10]; // array of object planet, each obj is a planet
-
 };
 #endif // SOLAR_SYSTEM_H

@@ -7,7 +7,6 @@ using namespace std;
 /*
     This function implements the logic to find the difference between the radius
     of all the planets in the system.
-
     Notes:
         * having more or less outputs means that your logic is not quite correct.
         * do not hard code the cout statements; use a smart logic instead.
@@ -17,7 +16,6 @@ using namespace std;
             cout<<"Radius difference between planet " <<  <<" and planet "<< <<
                     " is => "<< <<endl;
         * for 5 planets you should have 10 outputs.
-
 */
 void compareRadii(solarSystem solar_name, int number) {
     for(int i = 0; i < number; i++){
@@ -35,7 +33,6 @@ int main(){
     /* 1) Ask the user to create a solar system by promting him for 5 instances
      of type Planet. You will ask the user for name and radius of each
      Planet. Each object will have to have a unique name.
-
      Notes and hints:
         * you can use getline() to make the process faster
         * if you use getline use a smart delimeter to process name and radius in one user input
@@ -50,6 +47,11 @@ int main(){
     for (int count =1; count <= 5; count++){
             cout << "Please input planet " << count << "'s name and radius." << endl;
             cin >> input_name >> input_radius;
+
+            while (false == sol.addPlanet(input_name,input_radius)){                               //infinite loop need debug
+                cout << "Please input planet " << count << "'s name and radius." << endl;
+                cin >> input_name >> input_radius;
+            }
             sol.addPlanet(input_name,input_radius);
     }
 
@@ -79,7 +81,6 @@ int main(){
      function called compareRadii(...) that takes two params, a solarSystem and the
      number of planets in the system. You can find the function definition above
      the main. Once you are done implementing it call it.
-
      */
 
 

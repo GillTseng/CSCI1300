@@ -14,14 +14,10 @@ class planet{
         string getName();
         void setRadius(float);
         float getRadius();
-//        void setDist(float);
-//        float getDist();
-//        float getOrbitPeriod();
 
     private:
         string name;
         float radius;
-//        float distance;
 };
 
 #endif
