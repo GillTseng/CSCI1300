@@ -18,15 +18,18 @@ solarSystem::solarSystem(string name){
 solarSystem::~solarSystem(){
 }
 
-string solarSystem::getName(){      // return the name of the solar system
+// return the name of the solar system
+string solarSystem::getName(){
     return systemName;
 }
 
-int solarSystem::getNumPlanets(){         // return the number of planets in the system
+// return the number of planets in the system
+int solarSystem::getNumPlanets(){
     return numPlanets;
 }
 
-bool solarSystem::addPlanet(string name, float radius){           // add a single planet to solar system
+// add a single planet to solar system
+bool solarSystem::addPlanet(string name, float radius){
     if(numPlanets < maxNumPlanets){                               // check if number of planets exceeded the capacity
             bool unique = true;                                   // create bool variable to indicate if the input planet is unique
             for (int i = 0; i < numPlanets; i++){                 // use for loop check existing planets in the system
@@ -45,10 +48,12 @@ bool solarSystem::addPlanet(string name, float radius){           // add a singl
     return true;
 }
 
-planet solarSystem::getPlanet(int index){           // return an object of planet at provided index
+// return an object of planet at provided index
+planet solarSystem::getPlanet(int index){
     return systemPlanets[index];
 }
 
-float solarSystem::radiusDifference(planet p1, planet p2){      //calculate absolute radius difference between planets
+//calculate absolute radius difference between planets
+float solarSystem::radiusDifference(planet p1, planet p2){
     return fabs(p1.getRadius() - p2.getRadius());
 }
