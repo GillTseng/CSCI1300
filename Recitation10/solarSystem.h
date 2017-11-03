@@ -1,3 +1,9 @@
+// Author: Enchieh Tseng
+// Recitation: 110 – Monika Tak
+//
+// Recitation 10
+// solarSystem header file
+
 #ifndef SOLAR_SYSTEM_H
 #define SOLAR_SYSTEM_H
 

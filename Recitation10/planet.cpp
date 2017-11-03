@@ -1,3 +1,9 @@
+// Author: Enchieh Tseng
+// Recitation: 110 – Monika Tak
+//
+// Recitation 10
+// planet .cpp file
+
 #include "planet.h"
 #include <iostream>
 #include <string>

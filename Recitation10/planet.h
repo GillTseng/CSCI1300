@@ -1,3 +1,9 @@
+// Author: Enchieh Tseng
+// Recitation: 110 – Monika Tak
+//
+// Recitation 10
+// planet header file
+
 #ifndef PLANET_H
 #define PLANET_H
 

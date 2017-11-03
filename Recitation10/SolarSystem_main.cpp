@@ -1,3 +1,9 @@
+// Author: Enchieh Tseng
+// Recitation: 110 – Monika Tak
+//
+// Recitation 10
+// main file
+
 #include <iostream>
 #include "planet.h"
 #include "solarSystem.h"
@@ -20,8 +26,9 @@ using namespace std;
 void compareRadii(solarSystem solar_name, int number) {
     for(int i = 0; i < number; i++){
         for(int j = i+1; j < number; j++){
-            cout << "Radius difference between planet " << solar_name.getPlanet(i).getName() << " and planet " << solar_name.getPlanet(j).getName() <<
-                 " is => " << solar_name.radiusDifference(solar_name.getPlanet(i), solar_name.getPlanet(j)) << endl;
+            cout << "Radius difference between planet " << solar_name.getPlanet(i).getName() <<
+                " and planet " << solar_name.getPlanet(j).getName() << " is => " <<
+                solar_name.radiusDifference(solar_name.getPlanet(i), solar_name.getPlanet(j)) << endl;
         }
     }
     return;
@@ -43,13 +50,16 @@ int main(){
     float input_radius;
 
     solarSystem sol("Sol");
+
+    // ask user to input planets into Sol solarsystem
     cout << "Please create a solar system with 5 planets." << endl;
     for (int count =1; count <= 5; count++){
             cout << "Please input planet " << count << "'s name and radius." << endl;
             cin >> input_name >> input_radius;
 
-            while (false == sol.addPlanet(input_name,input_radius)){                               //infinite loop need debug
-                cout << "Please input planet " << count << "'s name and radius." << endl;
+            //if sol.addPlanet return false means the input planet is not unique, ask user to put another planet.
+            while (false == sol.addPlanet(input_name,input_radius)){
+                cout << "The Planet has already added into the solar system, please enter another planet." << endl;
                 cin >> input_name >> input_radius;
             }
             sol.addPlanet(input_name,input_radius);
