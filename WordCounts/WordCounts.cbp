@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="WordCounts.cpp" />
+		<Unit filename="WordCounts.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<envvars />

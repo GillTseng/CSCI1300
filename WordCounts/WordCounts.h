@@ -1,3 +1,9 @@
+// Author: Enchieh Tseng
+// Recitation: 110 – Monika Tak
+//
+// Assignment 7
+// Part 2
+
 #ifndef WORDCOUNTS_INCLUDED
 #define WORDCOUNTS_INCLUDED
 
@@ -7,7 +13,7 @@ using namespace std;
 
 class WordCounts{
     public:
-        //constructor
+        //constructor and destructor
         WordCounts();
         ~WordCounts();
 
@@ -24,7 +30,7 @@ class WordCounts{
         int word_count[10000];
         string pun = "!@#$%^&*()_-+={}[]:;''?/<>,.";
 
-        //method
+        //method (helper function)
         string removePunLow(string);
 };
 
