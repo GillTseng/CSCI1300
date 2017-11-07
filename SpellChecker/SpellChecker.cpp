@@ -38,7 +38,7 @@ bool SpellChecker::readValidWords(string validfile){
     string line;
     int count = 0;
     while(getline(inStream,line)){
-        if(line.length()>0){                                // if line is not blank then move one to next line
+        if(line.length()>0){                                // if line is not blank then do the following thing
                 valid_words[count] = line;                  // store line into valid_words array
                 count++;
         }
@@ -57,7 +57,7 @@ bool SpellChecker::readCorrectedWords(string correctfile){
     string line;
     int pos = 0;                                            // create an int variable 'pos' to store tab position
     while(getline(inStream,line)){
-        if(line.length()>0){                                // if line is not blank then move one to next line
+        if(line.length()>0){                                // if line is not blank then the following thing
                 pos = line.find('\t');                      // find the tab position and store it in 'pos'
                 for (int i = 0; i < 10000; i++){            // determine where to append the line to the existing array
                     if(incorrect_words[i].length() == 0){
@@ -95,32 +95,32 @@ char SpellChecker::getEndMarker(){
     return end_marker;
 }
 
-// the function is a helper function to remove punctuation at both ends of the string and then turn upper case to lower case
-string SpellChecker::removePunLow(string sent){
+// the function is a helper function to remove punctuation at both ends of a word string and then turn upper case to lower case
+string SpellChecker::removePunLow(string word){
 
     // if the first position of the string is punctuation, remove it
     for (int i = 0; i < pun.length(); i++){
-        if(sent[0] == pun[i]){
-            sent = sent.substr(1,sent.length()-1);
+        if(word[0] == pun[i]){
+            word = word.substr(1,word.length()-1);
             break;
         }
     }
 
     // if the last position of the string is punctuation, remove it
     for (int j = 0; j < pun.length(); j++){
-        if(sent[sent.length()-1] == pun[j]){
-            sent = sent.substr(0,sent.length()-1);
+        if(word[word.length()-1] == pun[j]){
+            word = word.substr(0,word.length()-1);
             break;
         }
     }
 
     // if the character is upper case turn into lower case
-    for (int k = 0; k < sent.length(); k++){
-        if (sent[k] >= 'A' && sent[k] <='Z'){
-            sent[k] = (char)tolower(sent[k]);
+    for (int k = 0; k < word.length(); k++){
+        if (word[k] >= 'A' && word[k] <='Z'){
+            word[k] = (char)tolower(word[k]);
         }
     }
-    return sent;
+    return word;
 }
 
 // the function is for fixing input string
