@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
-    Sys
+    System S1("../CUBBAYA_test.csv");
+//    Alumni A1;
     return 0;
 }

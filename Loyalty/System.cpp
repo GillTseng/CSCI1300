@@ -7,21 +7,21 @@ using namespace std;
 
 System::System(string filename){
 	end_index = 0;
-	readList(filename);
+	//readList(filename);
 }
 
 System::~System(){
 
 }
 
-System::readList(string filename){
-	ifstream inStream(filenmae, ios::in);
+void System::readList(string filename){
+	ifstream inStream(filename,ios::in);
 	if(inStream.fail()){
 		return;
 	}
 
 	string line;
-	while(getline(inStream,line) && line.length() > 0 && count < max_cap){
+	while(getline(inStream,line) && line.length() > 0 && end_index < max_cap){
 		string temp[5];
 		split(line,',',temp,5);
 		YoungAlumni[end_index] = Alumni(stoi(temp[0]),temp[1],temp[2],stoi(temp[3]),temp[4]);
@@ -59,14 +59,14 @@ int System::searchID(string first, string last, int gyr, string mj){
     if (name_match == true){
         if(gyr == getAlumni(index).get_gradyr() && mj == getAlumni(index).get_major()){
             user_index = index;
-            return index
+            return index;
         }
     }
     return -1;
 }
 
 int System::addAlumni(string first, string last, int gyr, string mj){
-    YoungAlumni[end_index+1] = Alumni(getAlumni(end_index).get_ID()+1, first, last, gyr, mg);
+    YoungAlumni[end_index+1] = Alumni(getAlumni(end_index).get_ID()+1, first, last, gyr, mj);
     end_index++;
     user_index = end_index;
     return end_index;
@@ -75,6 +75,23 @@ int System::addAlumni(string first, string last, int gyr, string mj){
 int System::getRanking(){
 
 }
+
+void System::split(string line, char c, string arr[], int num){
+    string substring = "";
+    int count = 0;
+    for (int i = 0; i < line.length(); i++){
+        if(line[i] != c){
+            substring = substring + line[i];
+        }
+        if (line[i] == c || i ==line.length()-1){
+            arr[count] = substring;
+            substring = "";
+            count++;
+        }
+    }
+    return;
+}
+
 
 void System::sortID(Alumni ya[]){
     for(int i = 0; i < end_index; i++){

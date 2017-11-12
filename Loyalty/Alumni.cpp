@@ -61,7 +61,7 @@ int Alumni::get_gradyr(){
     return grad_year;
 }
 
-void Alumni::set_major(string){
+void Alumni::set_major(string mj){
     major = mj;
     return;
 }
@@ -102,7 +102,7 @@ void Alumni::set_gift(string gft){
     return;
 }
 
-int Alumni::get_gift(){
+string Alumni::get_gift(){
     return gift;
 }
 

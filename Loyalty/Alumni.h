@@ -29,7 +29,7 @@ class Alumni{
 		void set_zip(int);
 		int get_zip();
 		void set_gift(string);
-		int get_gift();
+		string get_gift();
 		void set_point(int);
 		int get_point();
 
