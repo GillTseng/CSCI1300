@@ -1,14 +1,15 @@
-# ifndef SYSTEM_H_INCLUDED
-# define SYSTEM_H_INCLUDED
+# ifndef ALUMNISYSTEM_H_INCLUDED
+# define ALUMNISYSTEM_H_INCLUDED
 
 # include <iostream>
 # include <string>
 using namespace std;
 
-class System{
+class AlumniSystem{
 	public:
-		System(string);
-		~System();
+		AlumniSystem();
+		AlumniSystem(string);
+		~AlumniSystem();
 
 		// methods
 		void readList(string);  						// read current YA alumni list
@@ -34,10 +35,10 @@ class System{
 
 	private:
 		// data member
-		Alumni YoungAlumni[100000];						// array of young alumni list, each object is one alum
-		int max_cap = 100000;
+		Alumni YoungAlumni[1000];						// array of young alumni list, each object is one alum
+		int max_cap = 1000;
 
 
 };
 
-# endif // SYSTEM_H_INCLUDED
+# endif // ALUMNISYSTEM_H_INCLUDED
