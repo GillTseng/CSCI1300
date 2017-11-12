@@ -8,7 +8,7 @@ using namespace std;
 class Alumni{
 	public:
 		Alumni();
-		Alumni(int, string, string, int, string);
+		Alumni(int, string, string, int, string);       //the input fill contain ID, first name , last name, graduation year and major
 		~Alumni();
 
 		// methods
@@ -41,7 +41,7 @@ class Alumni{
 		string last_name;
 		int grad_year;
 		string major;
-		string address;
+		string address;         // below data members are input by users, the information is not live in the input file
 		string state;
 		int zip;
 		string gift;
