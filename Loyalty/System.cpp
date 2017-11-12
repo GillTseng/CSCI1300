@@ -6,6 +6,7 @@
 using namespace std;
 
 System::System(string filename){
+	end_index = 0;
 	readList(filename);
 }
 
@@ -20,19 +21,14 @@ System::readList(string filename){
 	}
 
 	string line;
-	int count = 0;
 	while(getline(inStream,line) && line.length() > 0 && count < max_cap){
 		string temp[5];
 		split(line,',',temp,5);
-		getAlumni(count).set_ID(stoi(temp[0]));
-		getAlumni(count).set_firstname(temp[1]);
-		getAlumni(count).set_lastname(temp[2]);
-		getAlumni(count).set_gradyr(stoi(temp[3]));
-		getAlumni(count).set_major(temp[4]);
-		count++;
+		YoungAlumni[end_index] = Alumni(stoi(temp[0]),temp[1],temp[2],stoi(temp[3]),temp[4]);
+		end_index++;
 	}
+	sortID(YoungAlumni);
 	inStream.close();
-	end_index = count;
 	return;
 }
 
@@ -76,4 +72,21 @@ int System::addAlumni(string first, string last, int gyr, string mj){
     return end_index;
 }
 
+int System::getRanking(){
 
+}
+
+void System::sortID(Alumni ya[]){
+    for(int i = 0; i < end_index; i++){
+        int min_index = i;
+        for (int j = i+1; j < end_index; j++){
+            if(ya[min_index].get_ID() > ya[j].get_ID()){
+                min_index = j;
+            }
+        }
+        Alumni temp = ya[i];
+        ya[i] = ya[min_index];
+        ya[min_index] = temp;
+    }
+    return;
+}

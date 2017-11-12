@@ -12,7 +12,6 @@ class System{
 
 		// methods
 		void readList(string);  						// read current YA alumni list
-		Alumni getAlumni(int);
 		int findAlum(int);								// find the specific user by input ID number, and return the index
 		int searchID(string, string, int, string);		// user input their first name, last name, graduation year and major to find their ID number, then return ID number
 		int addAlumni(string, string, int, string);		// if can't find user ID in the system, create new ID for the user, the function return ID number
@@ -22,10 +21,11 @@ class System{
 		void redeemPoint(int);
 		void inputAddress(string, string, int);
 		void writeList(string);							// after modify the list output the up-to-date version.
+		Alumni getAlumni(int);
 
 		// help function
 		void split(string, char, string[], int);
-		void sortID();								    // sort the list with ascending ID
+		void sortID(Alumni[]);						    // sort the list with ascending ID
 		void sortPoint();                               // sort the list with descending Points
 
 		// data member
