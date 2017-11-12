@@ -29,11 +29,17 @@ void AlumniSystem::readList(string filename){
 		string temp[5];
 		split(line,',',temp,5);
 		YoungAlumni[end_index] = Alumni(stoi(temp[0]),temp[1],temp[2],stoi(temp[3]),temp[4]);
-		cout << YoungAlumni[end_index].get_ID()<<endl;
+//		cout << YoungAlumni[end_index].get_ID() << '\t' <<YoungAlumni[end_index].get_firstname()
+//             << '\t' <<YoungAlumni[end_index].get_lastname()
+//             << '\t' <<YoungAlumni[end_index].get_gradyr()
+//             << '\t' <<YoungAlumni[end_index].get_major() << endl;
 		end_index++;
 	}
 
 	sortID(YoungAlumni);
+//	for (int i = 0; i < 1000; i++){
+//        cout << YoungAlumni[i].get_ID()<<endl;
+//	}
 	inStream.close();
 	return;
 }
@@ -93,8 +99,12 @@ void AlumniSystem::split(string line, char c, string arr[], int num){
             arr[count] = substring;
             substring = "";
             count++;
-            if(count == 4){
+            if(count == 4 && line[i+1] =='"'){
+                arr[count] = line.substr(i+2,(line.length()-1)-(i+2));
+                break;
+            } else if(count == 4 && line[i+1] !='"'){
                 arr[count] = line.substr(i+1,line.length()-(i+1));
+                break;
             }
         }
 
