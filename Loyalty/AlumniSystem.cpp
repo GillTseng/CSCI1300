@@ -29,50 +29,48 @@ void AlumniSystem::readList(string filename){
 		string temp[5];
 		split(line,',',temp,5);
 		YoungAlumni[end_index] = Alumni(stoi(temp[0]),temp[1],temp[2],stoi(temp[3]),temp[4]);
-//		cout << YoungAlumni[end_index].get_ID() << '\t' <<YoungAlumni[end_index].get_firstname()
-//             << '\t' <<YoungAlumni[end_index].get_lastname()
-//             << '\t' <<YoungAlumni[end_index].get_gradyr()
-//             << '\t' <<YoungAlumni[end_index].get_major() << endl;
+//		for (int i = 0; i < temp[4].length(); i++){
+//            cout << temp[4][i] << '\t' <<i <<endl;
+//		}
+
+//		cout << YoungAlumni[end_index].get_address() << '\t' <<YoungAlumni[end_index].get_state()
+//             << '\t' <<YoungAlumni[end_index].get_zip()
+//             << '\t' <<YoungAlumni[end_index].get_gift()
+//             << '\t' <<YoungAlumni[end_index].get_point() << endl;
 		end_index++;
 	}
 
 	sortID(YoungAlumni);
-//	for (int i = 0; i < 1000; i++){
-//        cout << YoungAlumni[i].get_ID()<<endl;
-//	}
 	inStream.close();
 	return;
 }
 
-Alumni AlumniSystem::getAlumni(int index){
-    return YoungAlumni[index];
-}
-
 int AlumniSystem::findAlum(int input_id){
     for(int i = 0; i < max_cap; i++){
-        if(getAlumni(i).get_ID() == input_id){
+        if(input_id == getAlumni(i).get_ID()){
                 user_index = i;
-                return i;
+                cout << YoungAlumni[user_index].get_lastname() << '\t' << YoungAlumni[user_index].get_ID()
+                << '\t' << user_index << endl;
+                return user_index;
         }
     }
     return -1;
 }
 
 int AlumniSystem::searchID(string first, string last, int gyr, string mj){
-    bool name_match = false;
-    int index;
     for(int i = 0; i < end_index; i++){
-        if (first == getAlumni(i).get_firstname() && last == getAlumni(i).get_lastname()){
-            name_match = true;
-            index = i;
-            break;
+        if (last == YoungAlumni[i].get_lastname()){
+            if (first == YoungAlumni[i].get_firstname()){
+                if (gyr == YoungAlumni[i].get_gradyr()){
+                    if (mj == YoungAlumni[i].get_major()){
+                        user_index = i;
+                        break;
+                        return user_index;
+                    }
+                }
+            }
         }
-    }
-    if (name_match == true){
-        if(gyr == getAlumni(index).get_gradyr() && mj == getAlumni(index).get_major()){
-            user_index = index;
-            return index;
-        }
+
     }
     return -1;
 }
@@ -99,10 +97,10 @@ void AlumniSystem::split(string line, char c, string arr[], int num){
             arr[count] = substring;
             substring = "";
             count++;
-            if(count == 4 && line[i+1] =='"'){
+            if(count == num-1 && line[i+1] =='"'){
                 arr[count] = line.substr(i+2,(line.length()-1)-(i+2));
                 break;
-            } else if(count == 4 && line[i+1] !='"'){
+            } else if(count == num-1 && line[i+1] !='"'){
                 arr[count] = line.substr(i+1,line.length()-(i+1));
                 break;
             }
@@ -126,4 +124,8 @@ void AlumniSystem::sortID(Alumni ya[]){
         ya[min_index] = temp;
     }
     return;
+}
+
+Alumni AlumniSystem::getAlumni(int index){
+    return YoungAlumni[index];
 }

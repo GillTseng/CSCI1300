@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1510465341 source:/home/user/Downloads/CSCI1300/Loyalty/Alumni.cpp
+1510628140 source:/home/user/Downloads/CSCI1300/Loyalty/Alumni.cpp
 	"Alumni.h"
 	<iostream>
 	<string>
 
-1510464250 /home/user/Downloads/CSCI1300/Loyalty/Alumni.h
+1510525539 /home/user/Downloads/CSCI1300/Loyalty/Alumni.h
 	<iostream>
 	<string>
 
@@ -12,7 +12,7 @@
 	<iostream>
 	<string>
 
-1510470473 source:/home/user/Downloads/CSCI1300/Loyalty/main.cpp
+1510640150 source:/home/user/Downloads/CSCI1300/Loyalty/main.cpp
 	"Alumni.h"
 	"AlumniSystem.h"
 	<iostream>
@@ -25,14 +25,14 @@
 	<string>
 	<fstream>
 
-1510470697 source:/home/user/Downloads/CSCI1300/Loyalty/AlumniSystem.cpp
+1510640266 source:/home/user/Downloads/CSCI1300/Loyalty/AlumniSystem.cpp
 	"Alumni.h"
 	"AlumniSystem.h"
 	<iostream>
 	<string>
 	<fstream>
 
-1510467979 /home/user/Downloads/CSCI1300/Loyalty/AlumniSystem.h
+1510639730 /home/user/Downloads/CSCI1300/Loyalty/AlumniSystem.h
 	<iostream>
 	<string>
 

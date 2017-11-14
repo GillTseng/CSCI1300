@@ -38,7 +38,7 @@ class AlumniSystem{
 	private:
 		// data member
 		Alumni YoungAlumni[1000];						// array of young alumni list, each object is one alum
-		int max_cap = 1000;
+		int max_cap = 1;
 		string events[10];                              // the array is for storing event list
 		int events_points[10];                          // the array is for storing how many points the event worth
 		string gifts[5];                                // the array is for storing gift list
