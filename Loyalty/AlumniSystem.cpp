@@ -29,14 +29,6 @@ void AlumniSystem::readList(string filename){
 		string temp[5];
 		split(line,',',temp,5);
 		YoungAlumni[end_index] = Alumni(stoi(temp[0]),temp[1],temp[2],stoi(temp[3]),temp[4]);
-//		for (int i = 0; i < temp[4].length(); i++){
-//            cout << temp[4][i] << '\t' <<i <<endl;
-//		}
-
-//		cout << YoungAlumni[end_index].get_address() << '\t' <<YoungAlumni[end_index].get_state()
-//             << '\t' <<YoungAlumni[end_index].get_zip()
-//             << '\t' <<YoungAlumni[end_index].get_gift()
-//             << '\t' <<YoungAlumni[end_index].get_point() << endl;
 		end_index++;
 	}
 
@@ -49,8 +41,6 @@ int AlumniSystem::findAlum(int input_id){
     for(int i = 0; i < max_cap; i++){
         if(input_id == getAlumni(i).get_ID()){
                 user_index = i;
-                cout << YoungAlumni[user_index].get_lastname() << '\t' << YoungAlumni[user_index].get_ID()
-                << '\t' << user_index << endl;
                 return user_index;
         }
     }
