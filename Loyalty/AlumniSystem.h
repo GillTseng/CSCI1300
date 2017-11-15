@@ -8,18 +8,18 @@ using namespace std;
 class AlumniSystem{
 	public:
 		AlumniSystem();
-		AlumniSystem(string);                          // when create AlumniSystem object, it will read current alumni record file
+		AlumniSystem(string,string,string);             // when create AlumniSystem object, it will read current alumni record file
 		~AlumniSystem();
 
 		// methods
 		void readList(string);  						// read current alumni list
+		void readEventList(string);                     // read event list that user can request points
+		void readGiftList(string);                      // read gift list that user can redeem points
 		bool findAlum(int);								// find the specific user by input ID number, and return the index
 		bool searchID(string, string, int, string);		// user input their first name, last name, graduation year and major to find their ID number, then return ID number
 		bool addAlumni(string, string, int, string);		// if can't find user ID in the system, create new ID for the user, the function return ID number
-		int getRanking();								// return ranking of the user
-		int getEnd();                                   // get the last record index of the YoungAlumni array
-		void readEventList(string);                     // read event list that user can request points
-		void readGiftList(string);                      // read gift list that user can redeem points
+		int getRanking(int);								// return ranking of the user
+		//int getEnd();                                   // get the last record index of the YoungAlumni array
 		void requestPoint(int);                         // update the points when user request points
 		void redeemPoint(int);                          // update the points when user redeem points
 		void inputAddress(string, string, int);         // input address information when user redeem points
@@ -33,7 +33,8 @@ class AlumniSystem{
 
 		// data member
 		int user_index;                                 // after find the user's record store the index for further usage e.g. update points
-		int end_index;                                  // indicate where is the last record of the YoungAlumni array
+		int end_index;
+		int user_ranking;                                  // indicate where is the last record of the YoungAlumni array
 
 	private:
 		// data member

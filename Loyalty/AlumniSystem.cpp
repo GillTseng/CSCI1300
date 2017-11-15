@@ -8,9 +8,11 @@ using namespace std;
 AlumniSystem::AlumniSystem(){
 }
 
-AlumniSystem::AlumniSystem(string filename){
+AlumniSystem::AlumniSystem(string alumnilist, string eventlist, string giftlist){
 	end_index = 0;
-	readList(filename);
+	readList(alumnilist);
+    readEventList(eventlist);
+    readGiftList(giftlist);
 }
 
 AlumniSystem::~AlumniSystem(){
@@ -35,6 +37,44 @@ void AlumniSystem::readList(string filename){
 	sortID(YoungAlumni);
 	inStream.close();
 	return;
+}
+
+void AlumniSystem::readEventList(string filename){
+    ifstream inStream(filename, ios::in);
+    if(inStream.fail()){
+        return;
+    }
+    string line;
+    getline(inStream,line);
+    int count = 0;
+    while(getline(inStream,line) && line.length()>0){
+        string temp[2];
+        split(line,',',temp,2);
+        events[count] = temp[0];
+        events_points[count] = temp[1];
+        count++;
+    }
+    inStream.close();
+    return;
+}
+
+void AlumniSystem::readGiftList(string filename){
+    ifstream inStream(filename,ios::in);
+    if(inStream.fail()){
+        return;
+    }
+    string line;
+    getline(inStream,line);
+    int count = 0;
+    whiel(getline(inStream,line) && line.length() > 0){
+        string temp[2];
+        split(line,',',temp,2);
+        gifts[count] = temp[0];
+        gifts_points[count] = temp[1];
+        count++
+    }
+    inStream.close();
+    return;
 }
 
 bool AlumniSystem::findAlum(int input_id){
@@ -71,9 +111,16 @@ bool AlumniSystem::addAlumni(string first, string last, int gyr, string mj){
     return false;
 }
 
-int AlumniSystem::getRanking(){
-
+int AlumniSystem::getRanking(int id){
+    sortPoint(YoungAlumni);
+    for(int i = 0; i < end_index; i++){
+        if(id == YoungAlumni[i].get_ID()){
+            user_ranking = i+1;
+        }
+    }
+    return user_ranking;
 }
+
 
 void AlumniSystem::split(string line, char c, string arr[], int num){
     string substring = "";
@@ -114,6 +161,22 @@ void AlumniSystem::sortID(Alumni ya[]){
     }
     return;
 }
+
+void AlumniSystem::sortPoint(Alumni ya[]){
+    for(int i = 0; i < end_index; i++){
+        int max_index = i;
+        for(int j = i +1; j < end_index; j++){
+            if( ya[j].get_point() > ya[max_index].get_point()){
+                max_index = j;
+            }
+        }
+        Alumni temp = ya[i];
+        ya[i] = ya[max_index];
+        ya[max_index] = temp;
+    }
+    return;
+}
+
 
 Alumni AlumniSystem::getAlumni(int index){
     return YoungAlumni[index];
