@@ -37,39 +37,38 @@ void AlumniSystem::readList(string filename){
 	return;
 }
 
-int AlumniSystem::findAlum(int input_id){
+bool AlumniSystem::findAlum(int input_id){
     for(int i = 0; i < max_cap; i++){
         if(input_id == getAlumni(i).get_ID()){
                 user_index = i;
-                return user_index;
+                return true;
         }
     }
-    return -1;
+    return false;
 }
 
-int AlumniSystem::searchID(string first, string last, int gyr, string mj){
+bool AlumniSystem::searchID(string first, string last, int gyr, string mj){
     for(int i = 0; i < end_index; i++){
-        if (last == YoungAlumni[i].get_lastname()){
-            if (first == YoungAlumni[i].get_firstname()){
-                if (gyr == YoungAlumni[i].get_gradyr()){
-                    if (mj == YoungAlumni[i].get_major()){
-                        user_index = i;
-                        break;
-                        return user_index;
-                    }
-                }
+        if (last == YoungAlumni[i].get_lastname() &&
+            first == YoungAlumni[i].get_firstname() &&
+            gyr == YoungAlumni[i].get_gradyr() &&
+            mj == YoungAlumni[i].get_major()){
+                user_index = i;
+                break;
+                return true;
             }
-        }
-
     }
-    return -1;
+    return false;
 }
 
-int AlumniSystem::addAlumni(string first, string last, int gyr, string mj){
-    YoungAlumni[end_index+1] = Alumni(getAlumni(end_index).get_ID()+1, first, last, gyr, mj);
-    end_index++;
-    user_index = end_index;
-    return end_index;
+bool AlumniSystem::addAlumni(string first, string last, int gyr, string mj){
+    if (end_index < max_cap){
+        YoungAlumni[end_index] = Alumni(getAlumni(end_index-1).get_ID()+1, first, last, gyr, mj);
+        user_index = end_index;
+        end_index++;
+        return true;
+    }
+    return false;
 }
 
 int AlumniSystem::getRanking(){

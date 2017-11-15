@@ -13,9 +13,9 @@ class AlumniSystem{
 
 		// methods
 		void readList(string);  						// read current alumni list
-		int findAlum(int);								// find the specific user by input ID number, and return the index
-		int searchID(string, string, int, string);		// user input their first name, last name, graduation year and major to find their ID number, then return ID number
-		int addAlumni(string, string, int, string);		// if can't find user ID in the system, create new ID for the user, the function return ID number
+		bool findAlum(int);								// find the specific user by input ID number, and return the index
+		bool searchID(string, string, int, string);		// user input their first name, last name, graduation year and major to find their ID number, then return ID number
+		bool addAlumni(string, string, int, string);		// if can't find user ID in the system, create new ID for the user, the function return ID number
 		int getRanking();								// return ranking of the user
 		int getEnd();                                   // get the last record index of the YoungAlumni array
 		void readEventList(string);                     // read event list that user can request points
@@ -37,8 +37,8 @@ class AlumniSystem{
 
 	private:
 		// data member
-		Alumni YoungAlumni[1000];						// array of young alumni list, each object is one alum
-		int max_cap = 1000;
+		Alumni YoungAlumni[1500];						// array of young alumni list, each object is one alum
+		int max_cap = 1500;
 		string events[10];                              // the array is for storing event list
 		int events_points[10];                          // the array is for storing how many points the event worth
 		string gifts[5];                                // the array is for storing gift list

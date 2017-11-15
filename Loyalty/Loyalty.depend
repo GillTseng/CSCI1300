@@ -12,7 +12,7 @@
 	<iostream>
 	<string>
 
-1510640150 source:/home/user/Downloads/CSCI1300/Loyalty/main.cpp
+1510705818 source:/home/user/Downloads/CSCI1300/Loyalty/main.cpp
 	"Alumni.h"
 	"AlumniSystem.h"
 	<iostream>
@@ -25,14 +25,14 @@
 	<string>
 	<fstream>
 
-1510640266 source:/home/user/Downloads/CSCI1300/Loyalty/AlumniSystem.cpp
+1510706174 source:/home/user/Downloads/CSCI1300/Loyalty/AlumniSystem.cpp
 	"Alumni.h"
 	"AlumniSystem.h"
 	<iostream>
 	<string>
 	<fstream>
 
-1510640665 /home/user/Downloads/CSCI1300/Loyalty/AlumniSystem.h
+1510705969 /home/user/Downloads/CSCI1300/Loyalty/AlumniSystem.h
 	<iostream>
 	<string>
 
