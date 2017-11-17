@@ -87,7 +87,7 @@ bool AlumniSystem::findAlum(int input_id){
     return false;
 }
 
-bool AlumniSystem::searchID(string first, string last, int gyr, string mj){
+bool AlumniSystem::searchAlum(string first, string last, int gyr, string mj){
     for(int i = 0; i < end_index; i++){
         if (last == YoungAlumni[i].get_lastname() &&
             first == YoungAlumni[i].get_firstname() &&
@@ -142,6 +142,14 @@ void AlumniSystem::inputAddress(string add, string st, int zip_code){
     YoungAlumni[user_index].set_state(st);
     YoungAlumni[user_index].set_zip(zip_code);
     return;
+}
+
+string AlumniSystem::get_Events(int index){
+    return events[index];
+}
+
+int AlumniSystem::get_EventPoints(int index){
+    return events_points[index];
 }
 
 bool AlumniSystem::writeList(string outfile){
