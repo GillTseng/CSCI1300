@@ -69,8 +69,9 @@ int main()
              << "3 - Log out" << endl;
         cin >> opt;
         if (1 == opt){
-            for (int i = 0; i < 10; i++){
-                cout << S1.get_Events(i) << '\t' << S1.get_EventPoints(i) << endl;
+            cout << "Please choose below activities you would like to request points: " << endl;
+            for (int i = 0; i < 10 && S1.get_Events(i).length() > 0; i++){
+                cout << i << ' - ' <<S1.get_Events(i) << '\t' << S1.get_EventPoints(i) << endl;
             }
             enter = true;
         }
