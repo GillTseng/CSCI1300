@@ -19,10 +19,10 @@ AlumniSystem::~AlumniSystem(){
 
 }
 
-void AlumniSystem::readList(string filename){
+bool AlumniSystem::readList(string filename){
 	ifstream inStream(filename,ios::in);
 	if(inStream.fail()){
-		return;
+		return false;
 	}
 
 	string line;
@@ -36,13 +36,13 @@ void AlumniSystem::readList(string filename){
 
 	sortID(YoungAlumni);
 	inStream.close();
-	return;
+	return true;
 }
 
-void AlumniSystem::readEventList(string filename){
+bool AlumniSystem::readEventList(string filename){
     ifstream inStream(filename, ios::in);
     if(inStream.fail()){
-        return;
+        return false;
     }
     string line;
     getline(inStream,line);
@@ -51,30 +51,30 @@ void AlumniSystem::readEventList(string filename){
         string temp[2];
         split(line,',',temp,2);
         events[count] = temp[0];
-        events_points[count] = temp[1];
+        events_points[count] = stoi(temp[1]);
         count++;
     }
     inStream.close();
-    return;
+    return true;
 }
 
-void AlumniSystem::readGiftList(string filename){
+bool AlumniSystem::readGiftList(string filename){
     ifstream inStream(filename,ios::in);
     if(inStream.fail()){
-        return;
+        return false;
     }
     string line;
     getline(inStream,line);
     int count = 0;
-    whiel(getline(inStream,line) && line.length() > 0){
+    while(getline(inStream,line) && line.length() > 0){
         string temp[2];
         split(line,',',temp,2);
         gifts[count] = temp[0];
-        gifts_points[count] = temp[1];
-        count++
+        gifts_points[count] = stoi(temp[1]);
+        count++;
     }
     inStream.close();
-    return;
+    return true;
 }
 
 bool AlumniSystem::findAlum(int input_id){
@@ -121,6 +121,45 @@ int AlumniSystem::getRanking(int id){
     return user_ranking;
 }
 
+void AlumniSystem::requestPoint(int choice){
+    int pnt = YoungAlumni[user_index].get_point()+events_points[choice];
+    YoungAlumni[user_index].set_point(pnt);
+    return;
+}
+
+void AlumniSystem::redeemPoint(int choice){
+    if (gifts_points[choice] > YoungAlumni[user_index].get_point()){
+        cout << "Sorry, you don't have enough points to redeem the gift. Please select other gift." <<endl;
+        return;
+    }
+    int pnt = YoungAlumni[user_index].get_point() - gifts_points[choice];
+    YoungAlumni[user_index].set_point(pnt);
+    return;
+}
+
+void AlumniSystem::inputAddress(string add, string st, int zip_code){
+    YoungAlumni[user_index].set_address(add);
+    YoungAlumni[user_index].set_state(st);
+    YoungAlumni[user_index].set_zip(zip_code);
+    return;
+}
+
+bool AlumniSystem::writeList(string outfile){
+    ofstream outStream(outfile, ios::out);
+    if(outStream.fail()){
+        return false;
+    }
+    outStream << "EID,First.Name,Last.Name,Grad.Year,Major.1,Address,State,Zip,Gift,Point" << endl;
+    for(int i = 0; i < user_index; i++){
+        outStream << YoungAlumni[i].get_ID() << ',' << YoungAlumni[i].get_firstname() << ',' <<
+                     YoungAlumni[i].get_lastname() << ',' << YoungAlumni[i].get_gradyr() << ',' <<
+                     YoungAlumni[i].get_major() << ',' << YoungAlumni[i].get_address() << ',' <<
+                     YoungAlumni[i].get_state() << ',' << YoungAlumni[i].get_zip() << ',' <<
+                     YoungAlumni[i].get_gift() << ',' << YoungAlumni[i].get_point() << endl;
+    }
+    outStream.close();
+    return true;
+}
 
 void AlumniSystem::split(string line, char c, string arr[], int num){
     string substring = "";
