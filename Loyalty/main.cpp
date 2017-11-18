@@ -62,6 +62,9 @@ int main()
 
     cout << "**************************************************" << endl << endl;
     bool enter = false;
+    int event_select;
+    int gift_select;
+    int sum;
     do{
         cout << "Please select following options: " << endl
              << "1 - Request your point" << endl
@@ -69,11 +72,26 @@ int main()
              << "3 - Log out" << endl;
         cin >> opt;
         if (1 == opt){
-            cout << "Please choose below activities you would like to request points: " << endl;
-            for (int i = 0; i < 10 && S1.get_Events(i).length() > 0; i++){
-                cout << i << ' - ' <<S1.get_Events(i) << '\t' << S1.get_EventPoints(i) << endl;
-            }
             enter = true;
+            cout << "Please choose below activities you would like to request points: " << endl << endl;
+            for (int i = 0; i < 10 && S1.get_Events(i).length() > 0; i++){
+                cout  << i << " - " << S1.get_Events(i) << '\t' << S1.get_EventPoints(i) << endl;
+            }
+            cin >> event_select;
+            sum = S1.getAlumni(S1.user_index).get_point() + S1.get_EventPoints(event_select);
+            S1.getAlumni(S1.user_index).set_point(sum);
+            cout << S1.getAlumni(S1.user_index).get_point() <<endl;
+            cout << "Thank you ! " << S1.getAlumni(S1.user_index).get_firstname() << ". Your request has been processed!" << endl
+                 << "Your current point is: " << S1.getAlumni(S1.user_index).get_point() << endl;
+        } else if ( 2 == opt){
+            enter = true;
+
+        } else if ( 3 == opt){
+            enter = true;
+            S1.writeList("../YA List update.txt");
+            return 0;
+        } else {
+
         }
     } while (opt == false);
     return 0;
