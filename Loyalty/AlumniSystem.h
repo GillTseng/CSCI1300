@@ -24,6 +24,8 @@ class AlumniSystem{
 		void inputAddress(string, string, int);         // input address information when user redeem points
 		string get_Events(int);
 		int get_EventPoints(int);
+		string get_Gifts(int);
+		int get_GiftPoints(int);
 		bool writeList(string);							// after modify the list output the up-to-date version.
 		Alumni getAlumni(int);                          // retrieve specific alumni record within Alumni array
 

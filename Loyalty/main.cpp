@@ -65,6 +65,10 @@ int main()
     int event_select;
     int gift_select;
     int sum;
+    string addr;
+    string st;
+    int zip_code;
+
     do{
         cout << "Please select following options: " << endl
              << "1 - Request your point" << endl
@@ -80,12 +84,24 @@ int main()
             cin >> event_select;
             sum = S1.getAlumni(S1.user_index).get_point() + S1.get_EventPoints(event_select);
             S1.getAlumni(S1.user_index).set_point(sum);
-            cout << S1.getAlumni(S1.user_index).get_point() <<endl;
             cout << "Thank you ! " << S1.getAlumni(S1.user_index).get_firstname() << ". Your request has been processed!" << endl
                  << "Your current point is: " << S1.getAlumni(S1.user_index).get_point() << endl;
         } else if ( 2 == opt){
             enter = true;
-
+            cout << "Please choose below gifts you would like to redeem: " << endl << endl;
+            for (int i = 0; i < 5 && S1.get_Gifts(i).length() > 0; i++){
+                cout  << i << " - " << S1.get_Gifts(i) << '\t' << S1.get_GiftPoints(i) << endl;
+            }
+            cin >> gift_select;
+            sum = S1.getAlumni(S1.user_index).get_point() - S1.get_GiftPoints(gift_select);
+            S1.getAlumni(S1.user_index).set_point(sum);
+            cout << "Thank you ! " << S1.getAlumni(S1.user_index).get_firstname() << ". Your request has been processed!" << endl
+                 << "Your current point is: " << S1.getAlumni(S1.user_index).get_point() << endl;
+            cout << "Please input your address, state and zip code: " << endl;
+            cin >> addr >> st >> zip_code;
+            S1.getAlumni(S1.user_index).set_address(addr);
+            S1.getAlumni(S1.user_index).set_state(st);
+            S1.getAlumni(S1.user_index).set_zip(zip_code);
         } else if ( 3 == opt){
             enter = true;
             S1.writeList("../YA List update.txt");

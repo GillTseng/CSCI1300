@@ -152,6 +152,14 @@ int AlumniSystem::get_EventPoints(int index){
     return events_points[index];
 }
 
+string AlumniSystem::get_Gifts(int index){
+    return gifts[index];
+}
+
+int AlumniSystem::get_GiftPoints(int index){
+    return gifts_points[index];
+}
+
 bool AlumniSystem::writeList(string outfile){
     ofstream outStream(outfile, ios::out);
     if(outStream.fail()){
