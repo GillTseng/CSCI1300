@@ -107,7 +107,7 @@ int main()
             S1.writeList("../YA List update.txt");
             return 0;
         } else {
-
+            cout << "Sorry, we can't recognize your input. Please try again" << endl << endl;
         }
     } while (opt == false);
     return 0;
