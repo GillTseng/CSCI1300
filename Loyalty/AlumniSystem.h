@@ -36,6 +36,9 @@ class AlumniSystem{
 		void wrongmsgLines();
 		void menuLines();
 		bool requestPoint();
+		bool redeemPoint();
+		void updateLines();
+		void enterAddress();
 
 		// help function
 		void split(string, char, string[], int);        // parsing string information after read line from input file

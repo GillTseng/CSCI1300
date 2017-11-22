@@ -14,9 +14,9 @@ Alumni::Alumni(int id, string fname, string lname, int gyr, string mj){
 	grad_year = gyr;
 	major = mj;
 	address = "";
-	state = "";
-	zip = 0;
-	gift = "";
+    state = "";
+    zip = 0;
+    gift = "";
 	point = 0;
 }
 

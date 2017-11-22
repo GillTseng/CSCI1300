@@ -312,5 +312,61 @@ void AlumniSystem::menuLines(){
 }
 
 bool AlumniSystem::requestPoint(){
+    cout << "Please choose below activities you would like to request points: " << endl << endl;
+    for (int i = 0; i < 10 && get_Events(i).length() > 0; i++){
+            cout  << i << " - " << get_Events(i) << '\t' << get_EventPoints(i) << endl;
+    }
+    int event_select;
+    int sum;
+    cin >> event_select;
+    if (event_select >= 0 && event_select <= 6){
+            sum = getAlumni(user_index).get_point() + get_EventPoints(event_select);
+            getAlumni(user_index).set_point(sum);
+            return true;
+    }
+    wrongmsgLines();
+    return false;
 
+}
+
+bool AlumniSystem::redeemPoint(){
+    cout << "Please choose below gifts you would like to redeem: " << endl << endl;
+    for (int i = 0; i < 5 && get_Gifts(i).length() > 0; i++){
+            cout  << i << " - " << get_Gifts(i) << '\t' << get_GiftPoints(i) << endl;
+    }
+    int gift_select;
+    int sum;
+    cin >> gift_select;
+    if(gift_select >= 0 && gift_select <= 4){
+            sum = getAlumni(user_index).get_point() - get_GiftPoints(gift_select);
+            getAlumni(user_index).set_point(sum);
+            return true;
+    }
+    wrongmsgLines();
+    return false;
+}
+
+
+void AlumniSystem::updateLines(){
+    cout << "Thank you ! " << getAlumni(user_index).get_firstname() << ". Your request has been processed!" << endl
+         << "Your current point is: " << getAlumni(user_index).get_point() << endl << endl;
+}
+
+void AlumniSystem::enterAddress(){
+    string addr;
+    string st;
+    int zip_code;
+
+    cin.ignore();
+    cout << "Please input your address: " << endl;
+    getline(cin,addr);
+    cout << "Please input your state: " << endl;
+    getline(cin,st);
+    cout << "Please input your zip code: " << endl;
+    cin >> zip_code;
+
+    getAlumni(user_index).set_address(addr);
+    getAlumni(user_index).set_state(st);
+    getAlumni(user_index).set_zip(zip_code);
+    return;
 }
