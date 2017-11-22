@@ -29,6 +29,14 @@ class AlumniSystem{
 		bool writeList(string);							// after modify the list output the up-to-date version.
 		Alumni getAlumni(int);                          // retrieve specific alumni record within Alumni array
 
+		void welcomeLines();
+		bool idLogin();
+		bool nameLogin();
+		void loginLines();
+		void wrongmsgLines();
+		void menuLines();
+		bool requestPoint();
+
 		// help function
 		void split(string, char, string[], int);        // parsing string information after read line from input file
 		void sortID(Alumni[]);						    // sort the list with ascending ID

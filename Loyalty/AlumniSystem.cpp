@@ -236,3 +236,81 @@ void AlumniSystem::sortPoint(Alumni ya[]){
 Alumni AlumniSystem::getAlumni(int index){
     return YoungAlumni[index];
 }
+
+
+void AlumniSystem::welcomeLines(){
+    cout << "Welcome to Forever Buffs Reward Program" << endl
+         << "- If you would like to login with your ID Number, please enter 1." << endl
+         << "- If you you forget your ID Number, please enter 2." << endl;
+    return;
+}
+
+bool AlumniSystem::idLogin(){
+    int num;
+    cout << "Please enter your ID Number." << endl;
+    cin >> num;
+    if (true == findAlum(num)){
+            loginLines();
+            return true;
+    } else {
+        wrongmsgLines();
+        return false;
+    }
+    return false;
+}
+
+bool AlumniSystem::nameLogin(){
+    string first;
+    string last;
+    int gy;
+    string mj;
+
+    cin.ignore();
+    cout << "Please enter your First Name: " << endl;
+    getline(std::cin,first);
+    cout << "Please enter your Last Name: " << endl;
+    getline(cin,last);
+    cout << "Please enter your Major: " << endl;
+    getline(cin,mj);
+    cout << "Please enter your Graduation Year: " << endl;
+    cin >> gy;
+
+            if(true == searchAlum(first,last,gy,mj)){
+                    loginLines();
+                    return true;
+            } else {
+                if(true == addAlumni(first,last,gy,mj)){
+                        loginLines();
+                        return true;
+                } else {
+                    wrongmsgLines();
+                    return false;
+                }
+            }
+    return false;
+}
+
+void AlumniSystem::loginLines(){
+    cout << "**************************************************" << endl
+         << "Hello " << getAlumni(user_index).get_firstname() << '!' << endl
+         << "Your ID Number is: " << getAlumni(user_index).get_ID() << endl
+         << "Your current point is: " << getAlumni(user_index).get_point()<< endl
+         << "**************************************************" << endl << endl;
+    return;
+}
+
+void AlumniSystem::wrongmsgLines(){
+    cout << "Sorry, we can't recognize your input. Please try again" << endl << endl;
+}
+
+void AlumniSystem::menuLines(){
+    cout << "Please select following options: " << endl
+         << "1 - Request your point" << endl
+         << "2 - Redeem your point" << endl
+         << "3 - Log out" << endl;
+    return;
+}
+
+bool AlumniSystem::requestPoint(){
+
+}
