@@ -19,8 +19,6 @@ class AlumniSystem{
 		bool searchAlum(string, string, int, string);		// user input their first name, last name, graduation year and major to find their ID number, then return ID number
 		bool addAlumni(string, string, int, string);		// if can't find user ID in the system, create new ID for the user, the function return ID number
 		int getRanking(int);								// return ranking of the user
-		void requestPoint(int);                         // update the points when user request points
-		void redeemPoint(int);                          // update the points when user redeem points
 		void inputAddress(string, string, int);         // input address information when user redeem points
 		string get_Events(int);
 		int get_EventPoints(int);

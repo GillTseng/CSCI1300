@@ -121,22 +121,6 @@ int AlumniSystem::getRanking(int id){
     return user_ranking;
 }
 
-void AlumniSystem::requestPoint(int choice){
-    int pnt = YoungAlumni[user_index].get_point()+events_points[choice];
-    YoungAlumni[user_index].set_point(pnt);
-    return;
-}
-
-void AlumniSystem::redeemPoint(int choice){
-    if (gifts_points[choice] > YoungAlumni[user_index].get_point()){
-        cout << "Sorry, you don't have enough points to redeem the gift. Please select other gift." <<endl;
-        return;
-    }
-    int pnt = YoungAlumni[user_index].get_point() - gifts_points[choice];
-    YoungAlumni[user_index].set_point(pnt);
-    return;
-}
-
 void AlumniSystem::inputAddress(string add, string st, int zip_code){
     YoungAlumni[user_index].set_address(add);
     YoungAlumni[user_index].set_state(st);
@@ -166,7 +150,7 @@ bool AlumniSystem::writeList(string outfile){
         return false;
     }
     outStream << "EID,First.Name,Last.Name,Grad.Year,Major.1,Address,State,Zip,Gift,Point" << endl;
-    for(int i = 0; i < user_index; i++){
+    for(int i = 0; i <= user_index; i++){
         outStream << YoungAlumni[i].get_ID() << ',' << YoungAlumni[i].get_firstname() << ',' <<
                      YoungAlumni[i].get_lastname() << ',' << YoungAlumni[i].get_gradyr() << ',' <<
                      YoungAlumni[i].get_major() << ',' << YoungAlumni[i].get_address() << ',' <<
@@ -201,7 +185,6 @@ void AlumniSystem::split(string line, char c, string arr[], int num){
     return;
 }
 
-
 void AlumniSystem::sortID(Alumni ya[]){
     for(int i = 0; i < end_index; i++){
         int min_index = i;
@@ -232,16 +215,16 @@ void AlumniSystem::sortPoint(Alumni ya[]){
     return;
 }
 
-
 Alumni AlumniSystem::getAlumni(int index){
     return YoungAlumni[index];
 }
 
 
+
 void AlumniSystem::welcomeLines(){
     cout << "Welcome to Forever Buffs Reward Program" << endl
          << "- If you would like to login with your ID Number, please enter 1." << endl
-         << "- If you you forget your ID Number, please enter 2." << endl;
+         << "- If you you forget your ID Number, please enter 2." << endl << endl;
     return;
 }
 
@@ -307,9 +290,10 @@ void AlumniSystem::menuLines(){
     cout << "Please select following options: " << endl
          << "1 - Request your point" << endl
          << "2 - Redeem your point" << endl
-         << "3 - Log out" << endl;
+         << "3 - Log out" << endl << endl;
     return;
 }
+
 
 bool AlumniSystem::requestPoint(){
     cout << "Please choose below activities you would like to request points: " << endl << endl;

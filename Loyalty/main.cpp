@@ -5,6 +5,7 @@
 using namespace std;
 
 //22664,Christopher,Abuan,2007,Psychology
+// add new 554692
 int main()
 {
     int opt;
@@ -46,7 +47,8 @@ int main()
             S1.writeList("../YA List update.txt");
             return 0;
         } else {
-            cout << "Sorry, we can't recognize your input. Please try again" << endl << endl;
+            enter = true;
+            S1.wrongmsgLines();
         }
     } while (enter == true);
     return 0;
