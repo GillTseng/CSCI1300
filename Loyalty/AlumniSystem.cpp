@@ -220,7 +220,6 @@ Alumni AlumniSystem::getAlumni(int index){
 }
 
 
-
 void AlumniSystem::welcomeLines(){
     cout << "Welcome to Forever Buffs Reward Program" << endl
          << "- If you would like to login with your ID Number, please enter 1." << endl
@@ -274,7 +273,8 @@ bool AlumniSystem::nameLogin(){
 }
 
 void AlumniSystem::loginLines(){
-    cout << "**************************************************" << endl
+    cout << endl
+         << "**************************************************" << endl
          << "Hello " << getAlumni(user_index).get_firstname() << '!' << endl
          << "Your ID Number is: " << getAlumni(user_index).get_ID() << endl
          << "Your current point is: " << getAlumni(user_index).get_point()<< endl
@@ -283,7 +283,7 @@ void AlumniSystem::loginLines(){
 }
 
 void AlumniSystem::wrongmsgLines(){
-    cout << "Sorry, we can't recognize your input. Please try again" << endl << endl;
+    cout << "Sorry, we can't recognize your input. Please try again" << endl;
 }
 
 void AlumniSystem::menuLines(){
@@ -295,38 +295,54 @@ void AlumniSystem::menuLines(){
 }
 
 
-bool AlumniSystem::requestPoint(){
-    cout << "Please choose below activities you would like to request points: " << endl << endl;
-    for (int i = 0; i < 10 && get_Events(i).length() > 0; i++){
-            cout  << i << " - " << get_Events(i) << '\t' << get_EventPoints(i) << endl;
-    }
+bool AlumniSystem::requestPoint(int index){
     int event_select;
     int sum;
-    cin >> event_select;
-    if (event_select >= 0 && event_select <= 6){
-            sum = getAlumni(user_index).get_point() + get_EventPoints(event_select);
-            getAlumni(user_index).set_point(sum);
+    do {
+        cout << "Please choose below activities you would like to request points: " << endl << endl;
+        for (int i = 0; i < 10 && get_Events(i).length() > 0; i++){
+            cout  << i << " - " << get_Events(i) << '\t' << get_EventPoints(i) << endl;
+        }
+        cout << "-1" << " - " << "Back to last page." << endl;
+        cin >> event_select;
+        if (event_select >= 0 && event_select <= 6){
+            sum = YoungAlumni[index].get_point() + get_EventPoints(event_select);
+            YoungAlumni[index].set_point(sum);
             return true;
-    }
-    wrongmsgLines();
+        } else if ( -1 == event_select){
+            return false;
+        } else {
+            wrongmsgLines();
+            return false;
+        }
+    } while (event_select < -1 || event_select > 6);
     return false;
-
 }
 
-bool AlumniSystem::redeemPoint(){
-    cout << "Please choose below gifts you would like to redeem: " << endl << endl;
-    for (int i = 0; i < 5 && get_Gifts(i).length() > 0; i++){
-            cout  << i << " - " << get_Gifts(i) << '\t' << get_GiftPoints(i) << endl;
-    }
+bool AlumniSystem::redeemPoint(int index){
     int gift_select;
     int sum;
-    cin >> gift_select;
-    if(gift_select >= 0 && gift_select <= 4){
-            sum = getAlumni(user_index).get_point() - get_GiftPoints(gift_select);
-            getAlumni(user_index).set_point(sum);
-            return true;
-    }
-    wrongmsgLines();
+    cout << "Please choose below gifts you would like to redeem: " << endl << endl;
+    do {
+        for (int i = 0; i < 5 && get_Gifts(i).length() > 0; i++){
+            cout  << i << " - " << get_Gifts(i) << '\t' << get_GiftPoints(i) << endl;
+        }
+        cout << "-1" << " - " << "Back to last page." << endl;
+        cin >> gift_select;
+        if (gift_select >= 0 && gift_select <= 4 && YoungAlumni[index].get_point() >= get_GiftPoints(gift_select)){
+                sum = YoungAlumni[index].get_point() - get_GiftPoints(gift_select);
+                YoungAlumni[index].set_point(sum);
+                return true;
+        } else if (YoungAlumni[index].get_point() < get_GiftPoints(gift_select)){
+            cout << "Sorry, you don't have enough points to redeem this gift." << endl
+                 << "Please choose other gift to redeem." << endl;
+        } else if ( -1 == gift_select){
+            return false;
+        } else {
+            wrongmsgLines();
+            return false;
+        }
+    } while (YoungAlumni[index].get_point() < get_GiftPoints(gift_select));
     return false;
 }
 

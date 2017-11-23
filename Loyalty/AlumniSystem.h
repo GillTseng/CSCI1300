@@ -33,8 +33,8 @@ class AlumniSystem{
 		void loginLines();
 		void wrongmsgLines();
 		void menuLines();
-		bool requestPoint();
-		bool redeemPoint();
+		bool requestPoint(int);
+		bool redeemPoint(int);
 		void updateLines();
 		void enterAddress();
 

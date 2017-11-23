@@ -33,22 +33,26 @@ int main()
         S1.menuLines();
         cin >> opt;
         if (1 == opt){
-            if(true == S1.requestPoint()){
+            if(true == S1.requestPoint(S1.user_index)){
                 S1.updateLines();
+                enter = true;
+            } else if (false == S1.requestPoint(S1.user_index)){
                 enter = true;
             }
         } else if ( 2 == opt){
-            if(true == S1.redeemPoint()){
+            if(true == S1.redeemPoint(S1.user_index)){
                 S1.updateLines();
                 S1.enterAddress();
+                enter = true;
+            } else if (false == S1.redeemPoint(S1.user_index)){
                 enter = true;
             }
         } else if ( 3 == opt){
             S1.writeList("../YA List update.txt");
             return 0;
         } else {
-            enter = true;
             S1.wrongmsgLines();
+            enter = true;
         }
     } while (enter == true);
     return 0;
