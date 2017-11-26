@@ -54,6 +54,7 @@ int main()
         } else if ( 3 == opt ){
             S1.updateLines();
             S1.showRaphie("../ralphie.txt", S1.getAlumni(S1.user_index).get_point());
+            enter = true;
         } else if ( 4 == opt){
             S1.writeList("../YA List update.txt");
             return 0;

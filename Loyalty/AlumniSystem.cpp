@@ -287,7 +287,7 @@ void AlumniSystem::menuLines(){
     cout << "Please select following options: " << endl
          << "1 - Request your point" << endl
          << "2 - Redeem your point" << endl
-         << "3 - Check my Status" << endl
+         << "3 - Check my status" << endl
          << "4 - Log out" << endl;
     return;
 }
@@ -344,8 +344,10 @@ bool AlumniSystem::redeemPoint(int index){
 }
 
 void AlumniSystem::updateLines(){
-    cout << endl <<  "Thank you! " << getAlumni(user_index).get_firstname() << endl
-         << "Your current point is: " << getAlumni(user_index).get_point() << endl << endl;
+    cout << endl <<  "Thank you! " << getAlumni(user_index).get_firstname() << " (ID Number: " << YoungAlumni[user_index].get_ID()
+         << "). Your current point is: " << getAlumni(user_index).get_point() << endl
+         << "Your request has been received !"
+         << endl << endl;
 }
 
 void AlumniSystem::enterAddress(){
@@ -364,7 +366,8 @@ void AlumniSystem::enterAddress(){
     getAlumni(user_index).set_address(addr);
     getAlumni(user_index).set_state(st);
     getAlumni(user_index).set_zip(zip_code);
-    cout << endl << "Thank you, " << YoungAlumni[user_index].get_firstname() << ". Your request has been received !" << endl
+    cout << endl << "Thank you, " << YoungAlumni[user_index].get_firstname()
+         << "Your request has been received !" << endl
          << "We will ship your gift to above address in 3-5 business days." << endl << endl;
     return;
 }
