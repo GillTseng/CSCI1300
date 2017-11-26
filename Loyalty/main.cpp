@@ -33,21 +33,25 @@ int main()
         S1.menuLines();
         cin >> opt;
         if (1 == opt){
-            if(true == S1.requestPoint(S1.user_index)){
+            bool request = S1.requestPoint(S1.user_index);
+            if(true == request){
                 S1.updateLines();
                 enter = true;
-            } else if (false == S1.requestPoint(S1.user_index)){
+            } else if (false == request){
                 enter = true;
             }
         } else if ( 2 == opt){
-            if(true == S1.redeemPoint(S1.user_index)){
+            bool redeem = S1.redeemPoint(S1.user_index);
+            if(true == redeem){
                 S1.updateLines();
                 S1.enterAddress();
                 enter = true;
-            } else if (false == S1.redeemPoint(S1.user_index)){
+            } else if (false == redeem){
                 enter = true;
             }
-        } else if ( 3 == opt){
+        } else if ( 3 == opt ){
+            S1.updateLines();
+        } else if ( 4 == opt){
             S1.writeList("../YA List update.txt");
             return 0;
         } else {

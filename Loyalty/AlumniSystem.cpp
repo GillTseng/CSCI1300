@@ -111,23 +111,6 @@ bool AlumniSystem::addAlumni(string first, string last, int gyr, string mj){
     return false;
 }
 
-int AlumniSystem::getRanking(int id){
-    sortPoint(YoungAlumni);
-    for(int i = 0; i < end_index; i++){
-        if(id == YoungAlumni[i].get_ID()){
-            user_ranking = i+1;
-        }
-    }
-    return user_ranking;
-}
-
-void AlumniSystem::inputAddress(string add, string st, int zip_code){
-    YoungAlumni[user_index].set_address(add);
-    YoungAlumni[user_index].set_state(st);
-    YoungAlumni[user_index].set_zip(zip_code);
-    return;
-}
-
 string AlumniSystem::get_Events(int index){
     return events[index];
 }
@@ -196,21 +179,6 @@ void AlumniSystem::sortID(Alumni ya[]){
         Alumni temp = ya[i];
         ya[i] = ya[min_index];
         ya[min_index] = temp;
-    }
-    return;
-}
-
-void AlumniSystem::sortPoint(Alumni ya[]){
-    for(int i = 0; i < end_index; i++){
-        int max_index = i;
-        for(int j = i +1; j < end_index; j++){
-            if( ya[j].get_point() > ya[max_index].get_point()){
-                max_index = j;
-            }
-        }
-        Alumni temp = ya[i];
-        ya[i] = ya[max_index];
-        ya[max_index] = temp;
     }
     return;
 }
@@ -290,7 +258,8 @@ void AlumniSystem::menuLines(){
     cout << "Please select following options: " << endl
          << "1 - Request your point" << endl
          << "2 - Redeem your point" << endl
-         << "3 - Log out" << endl << endl;
+         << "3 - Check my Status" << endl
+         << "4 - Log out" << endl << endl;
     return;
 }
 
@@ -332,6 +301,7 @@ bool AlumniSystem::redeemPoint(int index){
         if (gift_select >= 0 && gift_select <= 4 && YoungAlumni[index].get_point() >= get_GiftPoints(gift_select)){
                 sum = YoungAlumni[index].get_point() - get_GiftPoints(gift_select);
                 YoungAlumni[index].set_point(sum);
+                YoungAlumni[index].set_gift(get_Gifts(gift_select));
                 return true;
         } else if (YoungAlumni[index].get_point() < get_GiftPoints(gift_select)){
             cout << "Sorry, you don't have enough points to redeem this gift." << endl
@@ -345,7 +315,6 @@ bool AlumniSystem::redeemPoint(int index){
     } while (YoungAlumni[index].get_point() < get_GiftPoints(gift_select));
     return false;
 }
-
 
 void AlumniSystem::updateLines(){
     cout << "Thank you ! " << getAlumni(user_index).get_firstname() << ". Your request has been processed!" << endl
