@@ -16,6 +16,7 @@ int main()
         cin >> opt;
         if (1 == opt){
             if(true ==S1.idLogin()){
+            S1.showRaphie("../ralphie.txt", S1.getAlumni(S1.user_index).get_point());
             login = true;
             }
         } else if (2 == opt){
@@ -35,6 +36,7 @@ int main()
         if (1 == opt){
             bool request = S1.requestPoint(S1.user_index);
             if(true == request){
+                S1.showRaphie("../ralphie.txt", S1.getAlumni(S1.user_index).get_point());
                 S1.updateLines();
                 enter = true;
             } else if (false == request){
@@ -43,6 +45,7 @@ int main()
         } else if ( 2 == opt){
             bool redeem = S1.redeemPoint(S1.user_index);
             if(true == redeem){
+                S1.showRaphie("../ralphie.txt", S1.getAlumni(S1.user_index).get_point());
                 S1.updateLines();
                 S1.enterAddress();
                 enter = true;
@@ -51,6 +54,7 @@ int main()
             }
         } else if ( 3 == opt ){
             S1.updateLines();
+            S1.showRaphie("../ralphie.txt", S1.getAlumni(S1.user_index).get_point());
         } else if ( 4 == opt){
             S1.writeList("../YA List update.txt");
             return 0;

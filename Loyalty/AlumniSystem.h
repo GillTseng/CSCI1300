@@ -35,6 +35,7 @@ class AlumniSystem{
 		bool redeemPoint(int);
 		void updateLines();
 		void enterAddress();
+		void showRaphie(string, int);
 
 		// help function
 		void split(string, char, string[], int);        // parsing string information after read line from input file

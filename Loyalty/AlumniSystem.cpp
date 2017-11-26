@@ -3,6 +3,11 @@
 # include <iostream>
 # include <string>
 # include <fstream>
+
+# define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
+# define RESET   "\033[0m"
+# define CLEAR "\033[2J"  // clear screen escape code
+
 using namespace std;
 
 AlumniSystem::AlumniSystem(){
@@ -242,11 +247,11 @@ bool AlumniSystem::nameLogin(){
 
 void AlumniSystem::loginLines(){
     cout << endl
-         << "**************************************************" << endl
+         << "*********************************************************************" << endl
          << "Hello " << getAlumni(user_index).get_firstname() << '!' << endl
          << "Your ID Number is: " << getAlumni(user_index).get_ID() << endl
          << "Your current point is: " << getAlumni(user_index).get_point()<< endl
-         << "**************************************************" << endl << endl;
+         << "*********************************************************************" << endl << endl;
     return;
 }
 
@@ -338,4 +343,29 @@ void AlumniSystem::enterAddress(){
     getAlumni(user_index).set_state(st);
     getAlumni(user_index).set_zip(zip_code);
     return;
+}
+
+void AlumniSystem::showRaphie(string filename, int user_point){
+    ifstream inStream(filename, ios::in);
+    if(inStream.fail()){
+        return;
+    }
+    string line;
+    int count = 1;
+    while(getline(inStream, line)){
+        for (int i = 0; i < line.length(); i++){
+            if (line[i] == '0' || line[i] == ','){
+                cout << " ";
+            } else if (line[i] == '1' && count <= user_point ){
+                cout << BOLDYELLOW << "*" << RESET;
+                count++;
+            } else if (line[i] == '1' && count > user_point){
+                cout << "*";
+            }
+        }
+        cout << endl;
+    }
+    inStream.close();
+    return;
+    // 303 *
 }
