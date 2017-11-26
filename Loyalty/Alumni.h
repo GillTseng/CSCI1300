@@ -8,7 +8,7 @@ using namespace std;
 class Alumni{
 	public:
 		Alumni();
-		Alumni(int, string, string, int, string);       //the input fill contain ID, first name , last name, graduation year and major
+		Alumni(int, string, string, int, string); // input parameter ID, first name, last name, graduation year and major
 		~Alumni();
 
 		// methods

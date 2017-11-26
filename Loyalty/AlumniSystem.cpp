@@ -115,6 +115,31 @@ bool AlumniSystem::addAlumni(string first, string last, int gyr, string mj){
     return false;
 }
 
+void AlumniSystem::showRaphie(string filename, int user_point){
+    ifstream inStream(filename, ios::in);
+    if(inStream.fail()){
+        return;
+    }
+    string line;
+    int count = 1;
+    while(getline(inStream, line)){
+        // star color will change according to user's point
+        for (int i = 0; i < line.length(); i++){
+            if (line[i] == '0' || line[i] == ','){
+                cout << " ";
+            } else if (line[i] == '1' && count <= user_point ){
+                cout << BOLDYELLOW << "*" << RESET;
+                count++;
+            } else if (line[i] == '1' && count > user_point){
+                cout << "*";
+            }
+        }
+        cout << endl;
+    }
+    inStream.close();
+    return;
+}
+
 string AlumniSystem::get_Events(int index){
     return events[index];
 }
@@ -159,8 +184,8 @@ void AlumniSystem::split(string line, char c, string arr[], int num){
             arr[count] = substring;
             substring = "";
             count++;
-            if(count == num-1 && line[i+1] =='"'){
-                arr[count] = line.substr(i+2,(line.length()-1)-(i+2));
+            if(count == num-1 && line[i+1] =='"'){                          // to remove double quote that in the last parsing string,
+                arr[count] = line.substr(i+2,(line.length()-1)-(i+2));      // which contain ',' in it.
                 break;
             } else if(count == num-1 && line[i+1] !='"'){
                 arr[count] = line.substr(i+1,line.length()-(i+1));
@@ -190,7 +215,6 @@ void AlumniSystem::sortID(Alumni ya[]){
 Alumni AlumniSystem::getAlumni(int index){
     return YoungAlumni[index];
 }
-
 
 void AlumniSystem::welcomeLines(){
     cout << "Welcome to Forever Buffs Reward Program!" << endl
@@ -230,18 +254,18 @@ bool AlumniSystem::nameLogin(){
     cout << "Please enter your Graduation Year: " << endl;
     cin >> gy;
 
-            if(true == searchAlum(first,last,gy,mj)){
-                    loginLines();
-                    return true;
-            } else {
-                if(true == addAlumni(first,last,gy,mj)){
-                        loginLines();
-                        return true;
-                } else {
-                    wrongmsgLines();
-                    return false;
-                }
-            }
+    if(true == searchAlum(first,last,gy,mj)){           // if can't search user's information then add the user into system
+            loginLines();
+            return true;
+    } else {
+        if(true == addAlumni(first,last,gy,mj)){
+            loginLines();
+            return true;
+        } else {
+            wrongmsgLines();
+            return false;
+        }
+    }
     return false;
 }
 
@@ -268,7 +292,6 @@ void AlumniSystem::menuLines(){
     return;
 }
 
-
 bool AlumniSystem::requestPoint(int index){
     int event_select;
     int sum;
@@ -287,9 +310,8 @@ bool AlumniSystem::requestPoint(int index){
             return false;
         } else {
             wrongmsgLines();
-            return false;
         }
-    } while (event_select < -1 || event_select > 6);
+    } while ( event_select < -1 || event_select > 6);        // if user's input can't be recognized then keep asking the question
     return false;
 }
 
@@ -309,23 +331,22 @@ bool AlumniSystem::redeemPoint(int index){
                 YoungAlumni[index].set_gift(get_Gifts(gift_select));
                 return true;
         } else if (YoungAlumni[index].get_point() < get_GiftPoints(gift_select)){
-            cout << "Sorry, you don't have enough points to redeem this gift." << endl
+            cout << "Sorry, you don't have enough points to redeem this gift." << endl << endl
                  << "Please choose other gift to redeem." << endl;
         } else if ( -1 == gift_select){
             return false;
         } else {
             wrongmsgLines();
-            return false;
         }
-    } while (YoungAlumni[index].get_point() < get_GiftPoints(gift_select));
+    // if user's input can't be recognized or user's point is not enough to redeem then keep asking the question
+    } while (YoungAlumni[index].get_point() < get_GiftPoints(gift_select) || gift_select < -1 || gift_select > 4);
     return false;
 }
 
 void AlumniSystem::updateLines(){
-    cout << endl <<  "Thank you ! " << getAlumni(user_index).get_firstname() << endl
+    cout << endl <<  "Thank you! " << getAlumni(user_index).get_firstname() << endl
          << "Your current point is: " << getAlumni(user_index).get_point() << endl << endl;
 }
-
 
 void AlumniSystem::enterAddress(){
     string addr;
@@ -346,29 +367,4 @@ void AlumniSystem::enterAddress(){
     cout << endl << "Thank you, " << YoungAlumni[user_index].get_firstname() << ". Your request has been received !" << endl
          << "We will ship your gift to above address in 3-5 business days." << endl << endl;
     return;
-}
-
-void AlumniSystem::showRaphie(string filename, int user_point){
-    ifstream inStream(filename, ios::in);
-    if(inStream.fail()){
-        return;
-    }
-    string line;
-    int count = 1;
-    while(getline(inStream, line)){
-        for (int i = 0; i < line.length(); i++){
-            if (line[i] == '0' || line[i] == ','){
-                cout << " ";
-            } else if (line[i] == '1' && count <= user_point ){
-                cout << BOLDYELLOW << "*" << RESET;
-                count++;
-            } else if (line[i] == '1' && count > user_point){
-                cout << "*";
-            }
-        }
-        cout << endl;
-    }
-    inStream.close();
-    return;
-    // 303 *
 }

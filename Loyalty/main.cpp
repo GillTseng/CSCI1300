@@ -4,12 +4,10 @@
 #include <string>
 using namespace std;
 
-//22664,Christopher,Abuan,2007,Psychology
-// add new 554692
 int main()
 {
-    int opt;
     AlumniSystem S1("../CUBBAYA_test.csv","../YA_Activities.txt","../YA_Rewards.txt");
+    int opt;
     bool login = false;
     do{
         S1.welcomeLines();
@@ -27,7 +25,7 @@ int main()
         } else {
             S1.wrongmsgLines();
         }
-    } while (login == false);
+    } while (login == false);           // if user can't successfully login then keep ask the question
 
 
     bool enter = false;
