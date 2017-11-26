@@ -6,7 +6,6 @@
 
 # define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
 # define RESET   "\033[0m"
-# define CLEAR "\033[2J"  // clear screen escape code
 
 using namespace std;
 
@@ -197,7 +196,7 @@ void AlumniSystem::welcomeLines(){
     cout << "Welcome to Forever Buffs Reward Program!" << endl
          << "Please choose below method to log in:" << endl
          << "1 - I would like to login with my ID Number" << endl
-         << "2 - I forgot my ID Number"  << endl;
+         << "2 - I forgot my ID Number / I don't have ID Number"  << endl;
     return;
 }
 
