@@ -194,15 +194,16 @@ Alumni AlumniSystem::getAlumni(int index){
 
 
 void AlumniSystem::welcomeLines(){
-    cout << "Welcome to Forever Buffs Reward Program" << endl
-         << "- If you would like to login with your ID Number, please enter 1." << endl
-         << "- If you you forget your ID Number, please enter 2." << endl << endl;
+    cout << "Welcome to Forever Buffs Reward Program!" << endl
+         << "Please choose below method to log in:" << endl
+         << "1 - I would like to login with my ID Number" << endl
+         << "2 - I forgot my ID Number"  << endl;
     return;
 }
 
 bool AlumniSystem::idLogin(){
     int num;
-    cout << "Please enter your ID Number." << endl;
+    cout << endl << "Please enter your ID Number." << endl;
     cin >> num;
     if (true == findAlum(num)){
             loginLines();
@@ -221,7 +222,7 @@ bool AlumniSystem::nameLogin(){
     string mj;
 
     cin.ignore();
-    cout << "Please enter your First Name: " << endl;
+    cout << endl << "Please enter your First Name: " << endl;
     getline(std::cin,first);
     cout << "Please enter your Last Name: " << endl;
     getline(cin,last);
@@ -256,7 +257,7 @@ void AlumniSystem::loginLines(){
 }
 
 void AlumniSystem::wrongmsgLines(){
-    cout << "Sorry, we can't recognize your input. Please try again" << endl;
+    cout << endl << "Sorry, we can't recognize your input. Please try again" << endl << endl;
 }
 
 void AlumniSystem::menuLines(){
@@ -264,7 +265,7 @@ void AlumniSystem::menuLines(){
          << "1 - Request your point" << endl
          << "2 - Redeem your point" << endl
          << "3 - Check my Status" << endl
-         << "4 - Log out" << endl << endl;
+         << "4 - Log out" << endl;
     return;
 }
 
@@ -273,7 +274,7 @@ bool AlumniSystem::requestPoint(int index){
     int event_select;
     int sum;
     do {
-        cout << "Please choose below activities you would like to request points: " << endl << endl;
+        cout << endl << "Please choose below activities you would like to request points: " << endl;
         for (int i = 0; i < 10 && get_Events(i).length() > 0; i++){
             cout  << i << " - " << get_Events(i) << '\t' << get_EventPoints(i) << endl;
         }
@@ -296,7 +297,7 @@ bool AlumniSystem::requestPoint(int index){
 bool AlumniSystem::redeemPoint(int index){
     int gift_select;
     int sum;
-    cout << "Please choose below gifts you would like to redeem: " << endl << endl;
+    cout << endl << "Please choose below gifts you would like to redeem: " << endl;
     do {
         for (int i = 0; i < 5 && get_Gifts(i).length() > 0; i++){
             cout  << i << " - " << get_Gifts(i) << '\t' << get_GiftPoints(i) << endl;
@@ -322,9 +323,10 @@ bool AlumniSystem::redeemPoint(int index){
 }
 
 void AlumniSystem::updateLines(){
-    cout << "Thank you ! " << getAlumni(user_index).get_firstname() << ". Your request has been processed!" << endl
+    cout << endl <<  "Thank you ! " << getAlumni(user_index).get_firstname() << endl
          << "Your current point is: " << getAlumni(user_index).get_point() << endl << endl;
 }
+
 
 void AlumniSystem::enterAddress(){
     string addr;
@@ -342,6 +344,8 @@ void AlumniSystem::enterAddress(){
     getAlumni(user_index).set_address(addr);
     getAlumni(user_index).set_state(st);
     getAlumni(user_index).set_zip(zip_code);
+    cout << endl << "Thank you, " << YoungAlumni[user_index].get_firstname() << ". Your request has been received !" << endl
+         << "We will ship your gift to above address in 3-5 business days." << endl << endl;
     return;
 }
 

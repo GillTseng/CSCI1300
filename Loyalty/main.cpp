@@ -21,6 +21,7 @@ int main()
             }
         } else if (2 == opt){
             if(true == S1.nameLogin()){
+            S1.showRaphie("../ralphie.txt", S1.getAlumni(S1.user_index).get_point());
             login = true;
             }
         } else {
